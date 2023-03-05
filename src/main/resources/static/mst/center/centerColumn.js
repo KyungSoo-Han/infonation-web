@@ -1,8 +1,8 @@
 
 let centerColumn =[
     {
-        "name" : "id",
-        "fieldName" : "id",
+        "name" : "centerId",
+        "fieldName" : "centerId",
         "type" :"data",
         "width" : "100",
         "header" :{
@@ -22,8 +22,8 @@ let centerColumn =[
         }
     },
     {
-        "name" : "name",
-        "fieldName" : "name",
+        "name" : "centerName",
+        "fieldName" : "centerName",
         "type" :"data",
         "width" : "150",
         "header" :{

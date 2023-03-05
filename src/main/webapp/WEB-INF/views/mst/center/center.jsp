@@ -45,9 +45,7 @@
 </head>
 <body>
 
-    <p>
-        <h4>센터 관리</h4>
-    </p>
+    <p>기준정보 > 센터관리</p>
 
     <section style=" height: 100%">
         <div>
@@ -104,12 +102,13 @@
 
     $.ajax({
         method : "GET",
-        url : "http://39.117.158.182/api/select/tbl/mst_biz",
+        url : "http://localhost:8090/api/biz",
         contentType: 'application/json',
         success: function(data) {
             console.log(data);
-            for(let i = 0; i < data.length; i ++){
-                $("#mst_biz").append("<option value=" + data[i].code + ">" + data[i].name +"</option>");
+            for(let i = 0; i < data.data.length; i ++){
+                console.log(data.data[i].id);
+                $("#mst_biz").append("<option value=" + data.data[i].id + ">" + data.data[i].name +"</option>");
             }
 
         }, error: function (data) {

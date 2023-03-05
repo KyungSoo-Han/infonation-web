@@ -1,23 +1,23 @@
 
 let centerField = [
     {
-        "fieldName" : "center_cd",
+        "fieldName" : "centerId",
         "dataType" : "text"
     },
     {
-        "fieldName" : "center_nm",
+        "fieldName" : "centerName",
         "dataType" : "text"
     },
     {
-        "fieldName" : "zip_no",
+        "fieldName" : "zipNo",
         "dataType" : "text"
     },
     {
-        "fieldName" : "zip_addr",
+        "fieldName" : "zipAddr1",
         "dataType" : "text"
     },
     {
-        "fieldName" : "dtl_addr",
+        "fieldName" : "zipAddr2",
         "dataType" : "text"
     },
     {

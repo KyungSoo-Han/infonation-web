@@ -31,7 +31,7 @@ function Search() {
     console.log(srh_center_nm);
     $.ajax({
         method : "GET",
-        url : "http://39.117.158.182/api/center/detail?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
+        url : "http://localhost:8090/api/center", //?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
         contentType: 'application/json',
         success: function(data) {
             console.log(data);
