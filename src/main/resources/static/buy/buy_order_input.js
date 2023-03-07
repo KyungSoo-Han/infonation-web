@@ -294,7 +294,7 @@ function addRow() {
     dataProvider.addRow({});
 }
 function Search(){
-    if(slip_no.value == ''){
+    if(document.getElementById('inboundNo').value == ''){
         alert('입고요청번호를 입력후 조회하세요.');
         return;
     }
@@ -302,20 +302,23 @@ function Search(){
     gridView.showLoading();
     $.ajax({
         method : "GET",
-        url : "http://39.117.158.182/api/buy/"+document.getElementById('inboundNo').value,
+        url : "http://localhost:9081/api/inbound?inboundNo="+document.getElementById('inboundNo').value,
         contentType: 'application/json',
+        heagers:{
+            "userId": "1"
+        },
         success: function(data) {
-
+            console.log(data.data[0]);
             document.getElementById('inboundNo').readOnly  = true;                   // 전표 텍스트박스 readOnly
-            document.getElementById('inboundDate').value = data.data.inboundDate;
+            document.getElementById('inboundDate').value = data.data[0].inboundDate;
             //document.getElementById('delivReq_dt').value = data.data.delivReq_dt;
-            document.getElementById('customerId').value = data.data.customerId;
-            document.getElementById('customerName').value = data.data.customerName;
-            document.getElementById('supplierId').value = data.data.supplierId;
-            document.getElementById('supplierName').value = data.data.supplierName;
-            document.getElementById('remark').value = data.data.remark;
+            document.getElementById('customerId').value = data.data[0].customerId;
+            document.getElementById('customerName').value = data.data[0].customerName;
+            document.getElementById('supplierId').value = data.data[0].supplierId;
+            document.getElementById('supplierName').value = data.data[0].supplierName;
+            document.getElementById('remark').value = data.data[0].remark;
 
-            dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
+            dataProvider.fillJsonData(data.data[0].itemResponse, {});   // 결과 데이터 그리드에 채워 넣기
 
             gridView.closeLoading();                    // 로딩창 닫기
 
