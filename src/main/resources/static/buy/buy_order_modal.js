@@ -2,11 +2,11 @@ let modal_dataProvider, modal_gridView;
 
 let modal_Field = [
     {
-        "fieldName" : "code",
+        "fieldName" : "codeId",
         "dataType" : "text"
     },
     {
-        "fieldName" : "name",
+        "fieldName" : "codeName",
         "dataType" : "text",
         "text-align" :"left",
     }
@@ -14,8 +14,8 @@ let modal_Field = [
 
 let modal_Column =[
     {
-        "name": "code",
-        "fieldName": "code",
+        "name": "codeId",
+        "fieldName": "codeId",
         "type": "data",
         "width": "150",
         "header": {
@@ -28,8 +28,8 @@ let modal_Column =[
         }
     },
     {
-        "name": "name",
-        "fieldName": "name",
+        "name": "codeName",
+        "fieldName": "codeName",
         "type": "data",
         "width": "250",
         "header": {
@@ -83,11 +83,10 @@ function createModalGrid(container) {
 
 };
 
-function SearchModal(param, sub_param) {
+function SearchModal(param, param2) {
 
-    document.getElementById('code').value = '';
-
-    if(param =='custProv' && document.getElementById('cust_cd').value == '')
+    //document.getElementById('codeId').value = '';
+    if(param =='supplier' && document.getElementById('customerId').value == '')
     {
         alert('화주사를 선택해야합니다.');
         return;
@@ -96,17 +95,32 @@ function SearchModal(param, sub_param) {
 
     if(param!='')
         document.getElementById('modal_param').value = param;
-    if(sub_param!='')
-        document.getElementById('code').value = sub_param
+    else
+        param = document.getElementById('modal_param').value;
 
+    if (param2 != '')// id값 코드에 적용, 화면에서 바로 id 입력하여 조회시
+        document.getElementById('codeId').value = param2;
+   /* else
+        param2 = document.getElementById('codeId').value;*/
+
+    let parentId = '';
+    if(param == 'supplier' || param == 'item'){
+        parentId = document.getElementById('customerId').value
+    }
+    console.log(param);
+    console.log(parentId);
     modal_gridView.showLoading();       // 모달의 로딩창
 
     $.ajax({
         method : "GET",
-        url : "http://39.117.158.182/api/select/tbl/"+ document.getElementById('modal_param').value +"?param1="+document.getElementById('code').value
-                                                        +"&param2="+document.getElementById('name').value
-                                                        +"&param3="+document.getElementById('cust_cd').value,
+        url : "http://localhost:9081/api/select/"+ param
+                                +"?parentId="+parentId
+                                +"&codeId="+document.getElementById('codeId').value
+                                +"&codeName="+document.getElementById('codeName').value,
         contentType: 'application/json',
+        headers:{
+            "userId" : "1"
+        },
         success: function(data) {
             modal_dataProvider.fillJsonData(data, {});
             modal_gridView.closeLoading();      // 모달의 로딩창 닫기
@@ -123,15 +137,17 @@ function SearchModal(param, sub_param) {
 function selectedModal() {
     let modal_current = modal_gridView.getCurrent();
 
-    if (document.getElementById('modal_param').value == 'cust') {
-        document.getElementById('cust_cd').value = modal_dataProvider.getValue(modal_current.dataRow, 'code');
-        document.getElementById('cust_nm').value = modal_dataProvider.getValue(modal_current.dataRow, 'name');
-    } else if (document.getElementById('modal_param').value == 'custProv') {
-        document.getElementById('custProv_cd').value = modal_dataProvider.getValue(modal_current.dataRow, 'code');
-        document.getElementById('custProv_nm').value = modal_dataProvider.getValue(modal_current.dataRow, 'name');
+    console.log(document.getElementById('modal_param').value);
+
+    if (document.getElementById('modal_param').value == 'customer') {
+        document.getElementById('customerId').value = modal_dataProvider.getValue(modal_current.dataRow, 'codeId');
+        document.getElementById('customerName').value = modal_dataProvider.getValue(modal_current.dataRow, 'codeName');
+    } else if (document.getElementById('modal_param').value == 'supplier') {
+        document.getElementById('supplierId').value = modal_dataProvider.getValue(modal_current.dataRow, 'codeId');
+        document.getElementById('supplierName').value = modal_dataProvider.getValue(modal_current.dataRow, 'codeName');
     } else if (document.getElementById('modal_param').value == 'item') {
-        dataProvider.setValue(current.dataRow, 'item_cd', modal_dataProvider.getValue(modal_current.dataRow, 'code'));
-        dataProvider.setValue(current.dataRow, 'item_nm', modal_dataProvider.getValue(modal_current.dataRow, 'name'));
+        dataProvider.setValue(current.dataRow, 'itemId', modal_dataProvider.getValue(modal_current.dataRow, 'codeId'));
+        dataProvider.setValue(current.dataRow, 'itemName', modal_dataProvider.getValue(modal_current.dataRow, 'codeName'));
     }
 }
 
@@ -149,5 +165,10 @@ function btnSelect(){
 function closeModal(){
     document.querySelector('#modalWrap').style.display = 'none';
     modal_dataProvider.clearRows();
+    clearCode();
+}
+function clearCode(){
+    document.getElementById('codeId').value = '';
+    document.getElementById('codeName').value = '';
 }
 

@@ -4,45 +4,45 @@ let current;
 
 let buy_orderField = [
     {
-        "fieldName" : "seq_no",
+        "fieldName" : "inboundId",
         "dataType" : "number"
     },
     {
-        "fieldName" : "item_cd",
+        "fieldName" : "itemId",
         "dataType" : "text"
     },
     {
-        "fieldName" : "item_nm",
+        "fieldName" : "itemName",
         "dataType" : "text"
     },
     {
-        "fieldName" : "item_qty",
+        "fieldName" : "qty",
         "dataType" : "number"
     },
     {
-        "fieldName" : "price_amt",
+        "fieldName" : "price",
         "dataType" : "number"
     },
-    {
-        "fieldName" : "supply_amt",
+  /*  {
+        "fieldName" : "amount",
         "dataType" : "number"
-    },
+    },*/
     {
-        "fieldName": "exp_dt",
+        "fieldName": "expDate",
         "dataType": "text",
         "datetimeFormat":"yyyy-MM-dd"
     },
     {
-        "fieldName": "make_dt",
+        "fieldName": "makeDate",
         "dataType": "text",
         "datetimeFormat":"yyyy-MM-dd"
     },
     {
-        "fieldName" : "provLot_no",
+        "fieldName" : "makeLotNo",
         "dataType" : "text"
     },
     {
-        "fieldName" : "item_remark",
+        "fieldName" : "subRemark",
         "dataType" : "text"
     }
 ]
@@ -50,8 +50,8 @@ let buy_orderField = [
 
 let buy_orderColumn =[
     {
-        "name" : "seq_no",
-        "fieldName" : "seq_no",
+        "name" : "inboundId",
+        "fieldName" : "inboundId",
         "type" :"data",
         "width" : "50",
         "header" :{
@@ -65,8 +65,8 @@ let buy_orderColumn =[
             return ret;
         }
     },{
-        "name" : "item_cd",
-        "fieldName" : "item_cd",
+        "name" : "itemId",
+        "fieldName" : "itemId",
         "type" :"data",
         "width" : "100",
         "header" :{
@@ -88,8 +88,8 @@ let buy_orderColumn =[
         }
     },
     {
-        "name" : "item_nm",
-        "fieldName" : "item_nm",
+        "name" : "itemName",
+        "fieldName" : "itemName",
         "type" :"data",
         "width" : "150",
         "header" :{
@@ -104,8 +104,8 @@ let buy_orderColumn =[
         }
     },
     {
-        "name" : "item_qty",
-        "fieldName" : "item_qty",
+        "name" : "qty",
+        "fieldName" : "qty",
         "type" :"data",
         "width" : "100",
         "header" :{
@@ -114,8 +114,8 @@ let buy_orderColumn =[
         "numberFormat" : "#,###.00"
     },
     {
-        "name" : "price_amt",
-        "fieldName" : "price_amt",
+        "name" : "price",
+        "fieldName" : "price",
         "type" :"data",
         "width" : "100",
         "header" :{
@@ -123,9 +123,9 @@ let buy_orderColumn =[
         },
         "numberFormat" : "#,###.00"
     },
-    {
-        "name" : "supply_amt",
-        "fieldName" : "supply_amt",
+ /*   {
+        "name" : "amount",
+        "fieldName" : "amount",
         "type" :"data",
         "width" : "100",
         "header" :{
@@ -139,10 +139,10 @@ let buy_orderColumn =[
 
             return ret;
         }
-    },
+    },*/
     {
-        "name" : "exp_dt",
-        "fieldName" : "exp_dt",
+        "name" : "expDate",
+        "fieldName" : "expDate",
         "width" : "100",
         "header" :{
             "text" : "유통기한",
@@ -161,8 +161,8 @@ let buy_orderColumn =[
         }
     },
     {
-        "name" : "make_dt",
-        "fieldName" : "make_dt",
+        "name" : "makeDate",
+        "fieldName" : "makeDate",
         "width" : "100",
         "header" :{
             "text" : "제조일자",
@@ -181,8 +181,8 @@ let buy_orderColumn =[
         }
     },
     {
-        "name" : "provLot_no",
-        "fieldName" : "provLot_no",
+        "name" : "makeLotNo",
+        "fieldName" : "makeLotNo",
         "type" :"data",
         "width" : "150",
         "header" :{
@@ -190,8 +190,8 @@ let buy_orderColumn =[
         }
     },
     {
-        "name" : "item_remark",
-        "fieldName" : "item_remark",
+        "name" : "subRemark",
+        "fieldName" : "subRemark",
         "type" :"data",
         "width" : "150",
         "header" :{
@@ -240,7 +240,7 @@ function createGrid(container) {
         if(rowState == 'updated' || rowState == 'none' )
             return;
 
-        if(document.getElementById('cust_cd').value == '')
+        if(document.getElementById('customerId').value == '')
         {
             alert('화주사를 선택해야합니다.');
             return;
@@ -261,12 +261,12 @@ function createGrid(container) {
         let v = 0;
         console.log(field);
         if(field == 4){         // 수량 변경시
-            v = grid.getValue(index, "item_qty");
-            grid.setValue(index, "supply_amt", v * newValue);
+            v = grid.getValue(index, "qty");
+            grid.setValue(index, "amount", v * newValue);
         }
         else if(field == 3){    // 단가 변경시
-            v = grid.getValue(index, "price_amt");
-            grid.setValue(index, "supply_amt", v * newValue);
+            v = grid.getValue(index, "price");
+            grid.setValue(index, "amount", v * newValue);
         }
     };
     /**
@@ -276,8 +276,8 @@ function createGrid(container) {
      */
     gridView.onKeyDown= function (grid, event) {
 
-        if((event.key == "Enter") && gridView.getCurrent().column == 'item_cd'){
-            if(document.getElementById('cust_cd').value == '')
+        if((event.key == "Enter") && gridView.getCurrent().column == 'itemId'){
+            if(document.getElementById('customerId').value == '')
             {
                 alert('화주사를 선택해야합니다.');
                 return;
@@ -302,18 +302,18 @@ function Search(){
     gridView.showLoading();
     $.ajax({
         method : "GET",
-        url : "http://39.117.158.182/api/buy/10001/"+document.getElementById('slip_no').value,
+        url : "http://39.117.158.182/api/buy/"+document.getElementById('inboundNo').value,
         contentType: 'application/json',
         success: function(data) {
 
-            document.getElementById('slip_no').readOnly  = true;                   // 전표 텍스트박스 readOnly
-            document.getElementById('slip_dt').value = data.data[0].slip_dt;
-            document.getElementById('delivReq_dt').value = data.data[0].delivReq_dt;
-            document.getElementById('cust_cd').value = data.data[0].cust_cd;
-            document.getElementById('cust_nm').value = data.data[0].cust_nm;
-            document.getElementById('custProv_cd').value = data.data[0].custProv_cd;
-            document.getElementById('custProv_nm').value = data.data[0].custProv_nm;
-            document.getElementById('remark').value = data.data[0].remark;
+            document.getElementById('inboundNo').readOnly  = true;                   // 전표 텍스트박스 readOnly
+            document.getElementById('inboundDate').value = data.data.inboundDate;
+            //document.getElementById('delivReq_dt').value = data.data.delivReq_dt;
+            document.getElementById('customerId').value = data.data.customerId;
+            document.getElementById('customerName').value = data.data.customerName;
+            document.getElementById('supplierId').value = data.data.supplierId;
+            document.getElementById('supplierName').value = data.data.supplierName;
+            document.getElementById('remark').value = data.data.remark;
 
             dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
 
@@ -326,69 +326,50 @@ function Search(){
 }
 function Save(){
 
-    let data = new Array();
-    let jsonData = null;
-
+    let mainData = new Object() ;
+    let itemData = new Array();
     gridView.showLoading();
 
-    //let createData = dataProvider.getStateRows('created');
-    //let createData = dataProvider.getAllStateRows();
     let getSaveData = [ ...dataProvider.getAllStateRows().updated, ...dataProvider.getAllStateRows().created];
     let saveData = getSaveData.map(e=>{
         return e
     });
-
     console.log(saveData);
+
+    mainData.bizId = '1';
+    mainData.centerId = '1';
+    mainData.inboundNo = document.getElementById('inboundNo').value;    // 신규 입력시 공백,
+    mainData.inboundDate = document.getElementById('inboundDate').value;
+    mainData.supplierId = document.getElementById('supplierId').value;
+    mainData.customerId = document.getElementById('customerId').value;
+    //jsonData.delivReq_dt = document.getElementById('delivReq_dt').value;
+    mainData.remark = document.getElementById('remark').value;
+
     if(saveData.length > 0) {
         for (let i in saveData) {
-
-            jsonData = dataProvider.getJsonRow(saveData[i]);        // 그리드의 값으로 json 데이터 생성
-            jsonData.biz_cd = '10001';
-            jsonData.center_cd = '01';
-            jsonData.slip_no = document.getElementById('slip_no').value;    // 신규 입력시 공백,
-            jsonData.slip_dt = document.getElementById('slip_dt').value;
-            jsonData.custProv_cd = document.getElementById('custProv_cd').value;
-            jsonData.cust_cd = document.getElementById('cust_cd').value;
-            jsonData.delivReq_dt = document.getElementById('delivReq_dt').value;
-            jsonData.remark = document.getElementById('remark').value;
-            jsonData.user_id = 'hanks';
-
-            if (jsonData.item_cd === undefined)
-                continue;
-
-            data.push(jsonData);
+            itemData.push(dataProvider.getJsonRow(saveData[i]));        // 그리드의 값으로 json 데이터 생성
         }
     }
-    else {
-        jsonData = new Object() ;
-        jsonData.biz_cd = '10001';
-        jsonData.center_cd = '01';
-        jsonData.slip_no = document.getElementById('slip_no').value;    // 신규 입력시 공백,
-        jsonData.slip_dt = document.getElementById('slip_dt').value;
-        jsonData.custProv_cd = document.getElementById('custProv_cd').value;
-        jsonData.cust_cd = document.getElementById('cust_cd').value;
-        jsonData.delivReq_dt = document.getElementById('delivReq_dt').value;
-        jsonData.remark = document.getElementById('remark').value;
-        jsonData.user_id = 'hanks';
-
-        data.push(jsonData);
-    }
-    console.log(jsonData);
-    console.log(data);
-
+    mainData.itemCreateRequest = itemData;
+    console.log(mainData);
+    console.log(itemData);
+    
     $.ajax({
         method : "POST",
-        url : "http://39.117.158.182/api/buy/save",
+        url : "http://localhost:9081/api/inbound",
         contentType: 'application/json',
-        data: JSON.stringify (data),
+        headers: {
+            "userId": "1",
+        },
+        data: JSON.stringify (mainData),
         success: function(data) {
 
             dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
             dataProvider.clearRowStates();              // 추가 & 수정 상태 초기화
             gridView.closeLoading();                    // 로딩창 닫기
 
-            document.getElementById('slip_no').value = data.data[0].slip_no;       // 채번된 전표번호 입력
-            document.getElementById('slip_no').readOnly  = true;                   // 전표 텍스트박스 readOnly
+            document.getElementById('inboundNo').value = data.data.inboundNo;       // 채번된 전표번호 입력
+            document.getElementById('inboundNo').readOnly  = true;                   // 전표 텍스트박스 readOnly
 
         }, error: function (data) {
             gridView.closeLoading();
@@ -396,7 +377,7 @@ function Save(){
     });
 }
 function New(){
-    document.getElementById('slip_no').readOnly  = false;
+    document.getElementById('inboundNo').readOnly  = false;
 
     let inputs = document.getElementsByTagName('input');
     for(let i = 0; i < inputs.length; i++) {

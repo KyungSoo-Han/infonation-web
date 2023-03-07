@@ -50,10 +50,10 @@
 				<table>
 					<tr>
 						<th><label>입고요청번호</label></th>
-						<td><input type="text" id="slip_no" ></td>
+						<td><input type="text" id="inboundNo" ></td>
 
 						<th><label>입고요청일자</label></th>
-						<td><input type="date" id="slip_dt"  ></td>
+						<td><input type="date" id="inboundDate"  ></td>
 
 						<th><label>입고예정일자</label></th>
 						<td><input type="date" id="delivReq_dt"></td>
@@ -61,21 +61,21 @@
 					<tr>
 						<th><label>화주사코드</label></th>
 						<td>
-							<input type="text" id="cust_cd">
-							<button type="button" onclick="SearchModal('cust','')">찾기</button>
+							<input type="text" id="customerId" >
+							<button type="button" onclick="SearchModal('customer','')">찾기</button>
 						</td>
 
 						<th><label>화주사명</label></th>
-						<td><input type="text" id="cust_nm" readonly ></td>
+						<td><input type="text" id="customerName"  readonly></td>
 
 						<th><label>공급사코드</label></th>
 						<td>
-							<input type="text" id="custProv_cd">
-							<button type="button" onclick="SearchModal('custProv','')">찾기</button>
+							<input type="text" id="supplierId" >
+							<button type="button" onclick="SearchModal('supplier','')">찾기</button>
 						</td>
 
 						<th><label>공급사명</label></th>
-						<td><input type="text" id="custProv_nm" readonly></td>
+						<td><input type="text" id="supplierName" readonly></td>
 					</tr>
 					<%--<tr>
 						<th><label>ERP발주번호</label></th><td><input type="text" id="erp_slip_no" readonly></td>
@@ -97,8 +97,8 @@
 	<div id="modalWrap" >
 		<div id="modalBody" >
 			<div style ="width: 100%; height:20px; padding-top:5px; padding-bottom:5px" >
-				<label>코드</label><input type="text" id="code" >
-				<label>명칭</label><input type="text" id="name" >
+				<label>코드</label><input type="text" id="codeId" >
+				<label>명칭</label><input type="text" id="codeName" >
 			</div>
 			<div id="selectGrid"  style ="width: 100%; height:500px">
 			</div>
@@ -117,52 +117,52 @@
 		createGrid("buy_order")
 		createModalGrid("selectGrid")
 
-		document.getElementById("slip_dt").value = new Date().toISOString().slice(0,10);
-		document.getElementById("delivReq_dt").value = new Date().toISOString().slice(0,10);
+		document.getElementById("inboundDate").value = new Date().toISOString().slice(0,10);
+		//document.getElementById("delivReq_dt").value = new Date().toISOString().slice(0,10);
 
 	});
 
-	let slip_no = document.getElementById('slip_no');
-	let cust_cd = document.getElementById('cust_cd');
-	let cust_nm = document.getElementById('cust_nm');
-	let custProv_cd = document.getElementById('custProv_cd');
-	let custProv_nm = document.getElementById('custProv_nm');
+	let inboundNo = document.getElementById('inboundNo');
+	let customerId = document.getElementById('customerId');
+	let customerName = document.getElementById('customerName');
+	let supplierId = document.getElementById('supplierId');
+	let supplierName = document.getElementById('supplierName');
 
-	slip_no.addEventListener("keyup", function (event) {
-		if(slip_no.value == ''){
+	inboundNo.addEventListener("keyup", function (event) {
+		if(inboundNo.value == ''){
 			alert('입고요청번호를 입력후 조회하세요.');
 			return;
 		}
 		if(event.key=="Enter")
 			Search();
 	})
-	cust_cd.addEventListener("keyup", function (event) {
-		cust_nm.value = '';
-		custProv_cd.value = '';
-		custProv_nm.value = '';
+	customerId.addEventListener("keyup", function (event) {
+		customerName.value = '';
+		supplierId.value = '';
+		supplierName.value = '';
 
 		if(event.key=="Enter")
-			SearchModal('cust',cust_cd.value);
+			SearchModal('customer',customerId.value);
 	})
-	custProv_cd.addEventListener("keyup", function (event) {
-		custProv_nm.value = '';
+	supplierId.addEventListener("keyup", function (event) {
+		supplierName.value = '';
 
 		if(event.key=="Enter")
-			SearchModal('custProv',custProv_cd.value);
+			SearchModal('supplier',supplierId.value);
 	})
 
-	let code = document.getElementById('code');
-	code.addEventListener("keyup", function (event) {
+	let codeId = document.getElementById('codeId');
+	codeId.addEventListener("keyup", function (event) {
 		console.log(event.key);
 		if(event.key=="Enter")
-			SearchModal('item','');
+			SearchModal('','');
 	})
 
-	let name = document.getElementById('name');
-	name.addEventListener("keyup", function (event) {
+	let codeName = document.getElementById('codeName');
+	codeName .addEventListener("keyup", function (event) {
 		console.log(event.key);
 		if(event.key=="Enter")
-			SearchModal('item','');
+			SearchModal('','');
 	})
 
 /*

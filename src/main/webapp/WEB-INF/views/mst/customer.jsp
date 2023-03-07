@@ -19,13 +19,7 @@
     <meta charset="UTF-8">
     <title>Customer Table</title>
 
-    <link rel="stylesheet" href="/bsrp/css/realgrid-sky-blue.css?vs=<%=nowDatetime%>"/>
-    <link rel="stylesheet" href="/buy/buy_order_modal.css?vs=<%=nowDatetime%>"/>
-    <script type="text/javascript" src="/libs/realgrid-lic.js?vs=<%=nowDatetime%>"></script>
-    <script type="text/javascript" src="/libs/realgrid.2.6.0.min.js"></script>
     <script type="text/javascript" src="/libs/jquery-3.4.0.min.js" ></script>
-    <script type="text/javascript" src="/buy/buy_order_input.js?vs=<%=nowDatetime%>"></script>
-    <script type="text/javascript" src="/buy/buy_order_modal.js?vs=<%=nowDatetime%>"></script>
     <style>
 
         /* 제목 스타일 */
@@ -82,6 +76,11 @@
 <body>
 <p>기준정보 > 화주사 등록</p>
 <button onclick="Save()">저장</button>
+<button onclick="ExcelUpload()">엑셀업로드</button>
+<form id="uploadForm" method="post" enctype="multipart/form-data">
+    <input type="file" name="excelFile">
+    <button type="submit">Upload</button>
+</form>
 <div class="main-container" style="padding-top: 10px;">
     <table>
         <tr>
@@ -144,55 +143,7 @@
             </td>
         </tr>
     </table>
-       <%-- <table>
-            <tr>
-                <td><label for="name">화주사명</label></td>
-                <td><input type="text"  id="name"></td>
-                <td><label for="eng-name">영문명</label></td>
-                <td><input type="text"  id="eng-name"></td>
-            </tr>
-            <tr>
-                <td><label for="owner-name">대표자</label></td>
-                <td><input type="text"  id="owner-name"></td>
-                <td><label for="biz-no">사업자번호</label></td>
-                <td><input type="text"  id="biz-no"></td>
-            </tr>
-            <tr>
-                <td><label for="biz-item">종목</label></td>
-                <td><input type="text"  id="biz-item"></td>
-                <td><label for="biz-type">업태</label></td>
-                <td><input type="text"  id="biz-type"></td>
-            </tr>
-            <tr>
-                <td><label for="email">메일</label></td>
-                <td><input type="email"  id="email"></td>
-                <td><label for="zip-no">우편 번호</label></td>
-                <td><input type="text"  id="zip-no"></td>
-            </tr>
-            <tr>
-                <td><label for="zip-addr1">주소</label></td>
-                <td><input type="text"  id="zip-addr1"></td>
-                <td><label for="zip-addr2">상세 주소</label></td>
-                <td><input type="text"  id="zip-addr2"></td>
-            </tr>
-            <tr>
-                <td><label for="tel-no">전화 번호</label></td>
-                <td><input type="tel"  id="tel-no"></td>
-                <td><label for="fax-no">팩스 번호</label></td>
-                <td><input type="tel"  id="fax-no"></td>
-            </tr>
-            <tr>
-                <td><label for="homepage">홈페이지</label></td>
-                <td><input type="url"  id="homepage"></td>
-                <td><label for="status">상태</label></td>
-                <td>
-                    <select  id="status">
-                        <option value="1">거래중</option>
-                        <option value="0">거래중지</option>
-                    </select>
-                </td>
-            </tr>
-        </table>--%>
+
 </div>
 </body>
 <script>
@@ -211,6 +162,27 @@
         }
     });
 
+    $(document).ready(function() {
+        $('#uploadForm').submit(function(event) {
+            event.preventDefault(); // 기본 동작 방지
+            var form = $(this);
+            var formData = new FormData(form[0]); // 폼 데이터 생성
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:9081/api/customer/upload',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    console.log(result); // 성공 처리
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 오류 처리
+                }
+            });
+        });
+    });
     function Save() {
         if (document.getElementById('name').value == '')
         {
@@ -253,6 +225,25 @@
                 console.log(data);
             }
         });
+    }
+
+    function ExcelUpload() {
+            let form = document.getElementById('uploadForm');
+            let formData = new FormData(form[0]); // 폼 데이터 생성
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:9081/api/customer/upload',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    console.log(result); // 성공 처리
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 오류 처리
+                }
+            });
     }
 </script>
 </html>
