@@ -19,14 +19,14 @@
         String nowDatetime = formatter.format(now);
     %>
     <link rel="stylesheet" href="/bsrp/css/realgrid-sky-blue.css?vs=<%=nowDatetime%>"/>
-    <link rel="stylesheet" href="/buy/buy_order_modal.css?vs=<%=nowDatetime%>"/>
+    <link rel="stylesheet" href="/inbound/inbound_modal.css?vs=<%=nowDatetime%>"/>
     <script type="text/javascript" src="/libs/realgrid-lic.js"></script>
     <script type="text/javascript" src="/libs/realgrid.2.6.0.min.js"></script>
     <script type="text/javascript" src="/libs/realgrid-utils.js?vs=<%=nowDatetime%>"></script>
     <script type="text/javascript" src="/libs/jszip.min.js"></script>
     <script type="text/javascript" src="/libs/jquery-3.4.0.min.js" ></script>
-    <script type="text/javascript" src="/buy/buy_order_list.js?vs=<%=nowDatetime%>"></script>
-    <script type="text/javascript" src="/buy/buy_order_modal.js?vs=<%=nowDatetime%>"></script>
+    <script type="text/javascript" src="/inbound/inbound_list.js?vs=<%=nowDatetime%>"></script>
+    <script type="text/javascript" src="/inbound/inbound_modal.js?vs=<%=nowDatetime%>"></script>
     <style>
         .left-align-column{
             text-align: left;
@@ -72,7 +72,7 @@
         </table>
     </div>
     <br>
-    <div id="buy_order_list"  style ="width: 100%; height:650px">
+    <div id="inbound_list"  style ="width: 100%; height:650px">
     </div>
     <div id="modalWrap" >
         <div id="modalBody" >
@@ -97,7 +97,7 @@
 
     window.addEventListener('DOMContentLoaded', function () {
 
-        createGrid("buy_order_list")
+        createGrid("inbound_list")
         createModalGrid("selectGrid")
 
         document.getElementById("fdate").value = fdate.toISOString().slice(0,10);

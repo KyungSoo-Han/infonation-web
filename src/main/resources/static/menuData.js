@@ -38,23 +38,23 @@ let menuData = [
         parent_cd: "MST_0000"
     },*/
     {
-        menu_cd: "BUY_0000",
-        menu_nm: "입고요청",
+        menu_cd: "INBOUND_0000",
+        menu_nm: "입고관리",
         menu_location: "#",
         parent_yn: "Y",
         parent_cd: ""
     }, {
-        menu_cd: "BUY_0001",
+        menu_cd: "INBOUND_0001",
         menu_nm: "입고요청등록",
-        menu_location: "/buy/buy_order_input",
+        menu_location: "/inbound/inbound_input",
         parent_yn: "N",
-        parent_cd: "BUY_0000"
+        parent_cd: "INBOUND_0000"
     },{
-        menu_cd: "BUY_0002",
+        menu_cd: "INBOUND_0002",
         menu_nm: "입고요청현황",
-        menu_location: "/buy/buy_order_list",
+        menu_location: "/inbound/inbound_list",
         parent_yn: "N",
-        parent_cd: "BUY_0000"
+        parent_cd: "INBOUND_0000"
     },
 
    {
@@ -67,7 +67,7 @@ let menuData = [
     {
         menu_cd: "TEST_02",
         menu_nm: "TEST 2",
-        menu_location: "./views/buy/buy_order.jsp",
+        menu_location: "./views/inbound/inbound_.jsp",
         parent_yn: "N",
         parent_cd: "menuList"
     },*/

@@ -2,7 +2,7 @@ let dataProvider, gridView;
 let current;
 
 
-let buy_orderField = [
+let inbound_Field = [
     {
         "fieldName" : "inboundId",
         "dataType" : "number"
@@ -48,7 +48,7 @@ let buy_orderField = [
 ]
 
 
-let buy_orderColumn =[
+let inbound_Column =[
     {
         "name" : "inboundId",
         "fieldName" : "inboundId",
@@ -202,7 +202,7 @@ let buy_orderColumn =[
 ]
 function createGrid(container) {
     dataProvider = new RealGrid.LocalDataProvider();
-    dataProvider.setFields(buy_orderField);
+    dataProvider.setFields(inbound_Field);
     dataProvider.setOptions({
         softDeleting: false                 // 행 삭제 시 실제로 삭제 됨, true: 삭제되지 않고 상태를 보여줌
     })
@@ -226,7 +226,7 @@ function createGrid(container) {
     gridView.filterMode = 'explicit';
 
     gridView.setDataSource(dataProvider);
-    gridView.setColumns(buy_orderColumn);
+    gridView.setColumns(inbound_Column);
 
     /**
      * 셀 버튼 클릭 이벤트
@@ -397,7 +397,7 @@ function New(){
 function Delete(){
     $.ajax({
         method : "DELETE",
-        url : "http://39.117.158.182/api/buy/delete/10001/"+document.getElementById('slip_no').value,
+        url : "http://39.117.158.182/api/inbound/delete/10001/"+document.getElementById('slip_no').value,
         contentType: 'application/json',
         success: function(data) {
             New();
@@ -443,7 +443,7 @@ function DeleteItem(){
 
     $.ajax({
         method : "DELETE",
-        url : "http://39.117.158.182/api/buy/deleteitem",
+        url : "http://39.117.158.182/api/inbound/deleteitem",
         contentType: 'application/json',
         data: JSON.stringify (data),
         success: function(data) {

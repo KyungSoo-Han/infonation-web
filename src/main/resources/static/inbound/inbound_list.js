@@ -2,7 +2,7 @@ let dataProvider, gridView;
 let current;
 
 
-let buy_orderField = [
+let inbound_Field = [
     {
         "fieldName" : "slip_no",
         "dataType" : "text"
@@ -76,7 +76,7 @@ let buy_orderField = [
 ]
 
 
-let buy_orderColumn =[
+let inbound_Column =[
     {
         "name" : "slip_no",
         "fieldName" : "slip_no",
@@ -252,7 +252,7 @@ let buy_orderColumn =[
 
 function createGrid(container) {
     dataProvider = new RealGrid.LocalDataProvider();
-    dataProvider.setFields(buy_orderField);
+    dataProvider.setFields(inbound_Field);
     dataProvider.setOptions({
         softDeleting: false                 // 행 삭제 시 실제로 삭제 됨, true: 삭제되지 않고 상태를 보여줌
     })
@@ -280,7 +280,7 @@ function createGrid(container) {
 
 
     gridView.setDataSource(dataProvider);
-    gridView.setColumns(buy_orderColumn)
+    gridView.setColumns(inbound_Column)
     gridView.onContextMenuPopup = function (grid, x, y, elementName) {
         // realgrid-utils.js 기본 팝업 메뉴 생성
         setContextMenu(gridView);
@@ -384,7 +384,7 @@ function Search(){
 
     $.ajax({
         method : "POST",
-        url : "http://39.117.158.182/api/buy/list",
+        url : "http://39.117.158.182/api/inbound/list",
         contentType: 'application/json',
         data: JSON.stringify(searchCondition),
         success: function(data) {
