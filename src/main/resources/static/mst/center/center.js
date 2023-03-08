@@ -31,7 +31,7 @@ function Search() {
     console.log(srh_center_nm);
     $.ajax({
         method : "GET",
-        url : "http://localhost:8090/api/center", //?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
+        url : "http://api.infonation.kr/api/center", //?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
         contentType: 'application/json',
         success: function(data) {
             console.log(data);
@@ -66,7 +66,7 @@ function Delete(){
 
     $.ajax({
         method : "DELETE",
-        url : "http://39.117.158.182/api/center",
+        url : "http://api.infonation.kr/api/center",
         contentType: 'application/json',
         data: JSON.stringify (data),
         success: function(data) {
@@ -113,7 +113,7 @@ function Save(){
 
     $.ajax({
         method : "POST",
-        url : "http://39.117.158.182/api/center",
+        url : "http://api.infonation.kr/api/center",
         contentType: 'application/json',
         data: JSON.stringify (data),
         success: function(data) {

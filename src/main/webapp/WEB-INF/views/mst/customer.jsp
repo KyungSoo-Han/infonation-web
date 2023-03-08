@@ -149,7 +149,7 @@
 <script>
     $.ajax({
         method : "GET",
-        url : "http://localhost:8090/api/biz",
+        url : "http://api.infonation.kr/api/biz",
         contentType: 'application/json',
         success: function(data) {
             console.log(data);
@@ -169,7 +169,7 @@
             var formData = new FormData(form[0]); // 폼 데이터 생성
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:9081/api/customer/upload',
+                url: 'http://api.infonation.kr/api/customer/upload',
                 data: formData,
                 cache: false,
                 contentType: false,
@@ -210,7 +210,7 @@
 
         $.ajax({
             method : "POST",
-            url : "http://localhost:8090/api/customer",
+            url : "http://api.infonation.kr/api/customer",
             headers: {
                 "userId": "1",
             },
@@ -232,7 +232,7 @@
             let formData = new FormData(form[0]); // 폼 데이터 생성
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:9081/api/customer/upload',
+                url: 'http://api.infonation.kr/api/customer/upload',
                 data: formData,
                 cache: false,
                 contentType: false,

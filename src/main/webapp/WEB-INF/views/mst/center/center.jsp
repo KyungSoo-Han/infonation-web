@@ -102,7 +102,7 @@
 
     $.ajax({
         method : "GET",
-        url : "http://localhost:8090/api/biz",
+        url : "http://api.infonation.kr/api/biz",
         contentType: 'application/json',
         success: function(data) {
             console.log(data);

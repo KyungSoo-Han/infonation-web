@@ -56,7 +56,7 @@
 						<td><input type="date" id="inboundDate"  ></td>
 
 						<th><label>입고예정일자</label></th>
-						<td><input type="date" id="delivReq_dt"></td>
+						<td><input type="date" id="inboundExpDate"></td>
 					</tr>
 					<tr>
 						<th><label>화주사코드</label></th>
@@ -118,7 +118,7 @@
 		createModalGrid("selectGrid")
 
 		document.getElementById("inboundDate").value = new Date().toISOString().slice(0,10);
-		//document.getElementById("delivReq_dt").value = new Date().toISOString().slice(0,10);
+		//document.getElementById("inboundExpDate").value = new Date().toISOString().slice(0,10);
 
 	});
 

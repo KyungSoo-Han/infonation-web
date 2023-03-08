@@ -4,7 +4,7 @@ let current;
 
 let inbound_Field = [
     {
-        "fieldName" : "inboundId",
+        "fieldName" : "inboundSeq",
         "dataType" : "number"
     },
     {
@@ -50,8 +50,8 @@ let inbound_Field = [
 
 let inbound_Column =[
     {
-        "name" : "inboundId",
-        "fieldName" : "inboundId",
+        "name" : "inboundSeq",
+        "fieldName" : "inboundSeq",
         "type" :"data",
         "width" : "50",
         "header" :{
@@ -302,7 +302,7 @@ function Search(){
     gridView.showLoading();
     $.ajax({
         method : "GET",
-        url : "http://localhost:9081/api/inbound?inboundNo="+document.getElementById('inboundNo').value,
+        url : "http://api.infonation.kr/api/inbound?inboundNo="+document.getElementById('inboundNo').value,
         contentType: 'application/json',
         heagers:{
             "userId": "1"
@@ -311,7 +311,7 @@ function Search(){
             console.log(data.data[0]);
             document.getElementById('inboundNo').readOnly  = true;                   // 전표 텍스트박스 readOnly
             document.getElementById('inboundDate').value = data.data[0].inboundDate;
-            //document.getElementById('delivReq_dt').value = data.data.delivReq_dt;
+            document.getElementById('inboundExpDate').value = data.data[0].inboundExpDate;
             document.getElementById('customerId').value = data.data[0].customerId;
             document.getElementById('customerName').value = data.data[0].customerName;
             document.getElementById('supplierId').value = data.data[0].supplierId;
@@ -345,11 +345,14 @@ function Save(){
     mainData.inboundDate = document.getElementById('inboundDate').value;
     mainData.supplierId = document.getElementById('supplierId').value;
     mainData.customerId = document.getElementById('customerId').value;
-    //jsonData.delivReq_dt = document.getElementById('delivReq_dt').value;
+    mainData.inboundExpDate = document.getElementById('inboundExpDate').value;
     mainData.remark = document.getElementById('remark').value;
 
     if(saveData.length > 0) {
         for (let i in saveData) {
+            if(dataProvider.getJsonRow(saveData[i]).itemId === undefined)
+                continue;
+
             itemData.push(dataProvider.getJsonRow(saveData[i]));        // 그리드의 값으로 json 데이터 생성
         }
     }
@@ -359,15 +362,15 @@ function Save(){
     
     $.ajax({
         method : "POST",
-        url : "http://localhost:9081/api/inbound",
+        url : "http://api.infonation.kr/api/inbound",
         contentType: 'application/json',
         headers: {
             "userId": "1",
         },
         data: JSON.stringify (mainData),
         success: function(data) {
-
-            dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
+            console.log(data);
+            dataProvider.fillJsonData(data.data.itemCreateResponse, {});   // 결과 데이터 그리드에 채워 넣기
             dataProvider.clearRowStates();              // 추가 & 수정 상태 초기화
             gridView.closeLoading();                    // 로딩창 닫기
 
@@ -397,7 +400,7 @@ function New(){
 function Delete(){
     $.ajax({
         method : "DELETE",
-        url : "http://39.117.158.182/api/inbound/delete/10001/"+document.getElementById('slip_no').value,
+        url : "http://api.infonation.kr/api/inbound/delete/10001/"+document.getElementById('slip_no').value,
         contentType: 'application/json',
         success: function(data) {
             New();
@@ -425,7 +428,7 @@ function DeleteItem(){
         jsonData.slip_dt = document.getElementById('slip_dt').value;
         jsonData.custProv_cd = document.getElementById('custProv_cd').value;
         jsonData.cust_cd = document.getElementById('cust_cd').value;
-        jsonData.delivReq_dt = document.getElementById('delivReq_dt').value;
+        jsonData.inboundExpDate = document.getElementById('inboundExpDate').value;
         jsonData.remark = document.getElementById('remark').value;
         jsonData.user_id = 'hanks';
 
@@ -443,7 +446,7 @@ function DeleteItem(){
 
     $.ajax({
         method : "DELETE",
-        url : "http://39.117.158.182/api/inbound/deleteitem",
+        url : "http://api.infonation.kr/api/inbound/deleteitem",
         contentType: 'application/json',
         data: JSON.stringify (data),
         success: function(data) {

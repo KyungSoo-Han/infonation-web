@@ -113,7 +113,7 @@ function SearchModal(param, param2) {
 
     $.ajax({
         method : "GET",
-        url : "http://localhost:9081/api/select/"+ param
+        url : "http://api.infonation.kr/api/select/"+ param
                                 +"?parentId="+parentId
                                 +"&codeId="+document.getElementById('codeId').value
                                 +"&codeName="+document.getElementById('codeName').value,

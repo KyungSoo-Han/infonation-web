@@ -28,7 +28,7 @@ let inbound_Field = [
         "dataType" : "text"
     },
     {
-        "fieldName" : "delivReq_dt",
+        "fieldName" : "inboundExpDate",
         "dataType" : "text"
     },
     {
@@ -133,8 +133,8 @@ let inbound_Column =[
         }
     },
     {
-        "name" : "delivReq_dt",
-        "fieldName" : "delivReq_dt",
+        "name" : "inboundExpDate",
+        "fieldName" : "inboundExpDate",
         "type" :"data",
         "width" : "100",
         "header" :{
@@ -384,7 +384,7 @@ function Search(){
 
     $.ajax({
         method : "POST",
-        url : "http://39.117.158.182/api/inbound/list",
+        url : "http://api.infonation.kr/api/inbound/list",
         contentType: 'application/json',
         data: JSON.stringify(searchCondition),
         success: function(data) {
