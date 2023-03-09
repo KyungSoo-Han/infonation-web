@@ -309,17 +309,18 @@ function Search(){
         },
         success: function(data) {
             console.log(data.data[0]);
-            document.getElementById('inboundNo').readOnly  = true;                   // 전표 텍스트박스 readOnly
-            document.getElementById('inboundDate').value = data.data[0].inboundDate;
-            document.getElementById('inboundExpDate').value = data.data[0].inboundExpDate;
-            document.getElementById('customerId').value = data.data[0].customerId;
-            document.getElementById('customerName').value = data.data[0].customerName;
-            document.getElementById('supplierId').value = data.data[0].supplierId;
-            document.getElementById('supplierName').value = data.data[0].supplierName;
-            document.getElementById('remark').value = data.data[0].remark;
+            if( data.data[0] !== undefined) {
+                document.getElementById('inboundNo').readOnly = true;                   // 전표 텍스트박스 readOnly
+                document.getElementById('inboundDate').value = data.data[0].inboundDate;
+                document.getElementById('inboundExpDate').value = data.data[0].inboundExpDate;
+                document.getElementById('customerId').value = data.data[0].customerId;
+                document.getElementById('customerName').value = data.data[0].customerName;
+                document.getElementById('supplierId').value = data.data[0].supplierId;
+                document.getElementById('supplierName').value = data.data[0].supplierName;
+                document.getElementById('remark').value = data.data[0].remark;
 
-            dataProvider.fillJsonData(data.data[0].itemResponse, {});   // 결과 데이터 그리드에 채워 넣기
-
+                dataProvider.fillJsonData(data.data[0].itemResponse, {});   // 결과 데이터 그리드에 채워 넣기
+            }
             gridView.closeLoading();                    // 로딩창 닫기
 
         }, error: function (data) {
