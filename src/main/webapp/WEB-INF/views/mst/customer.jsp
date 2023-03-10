@@ -20,67 +20,16 @@
     <title>Customer Table</title>
 
     <script type="text/javascript" src="/libs/jquery-3.4.0.min.js" ></script>
-    <style>
-
-        /* 제목 스타일 */
-        h1 {
-            text-align: center;
-            font-size: 28px;
-            margin-top: 50px;
-        }
-
-        /* 폼 스타일 */
-        form {
-            margin-top: 10px;
-        }
-
-        /* 입력 요소 스타일 */
-        label {
-            width: 400px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        table{
-            width: 90%;
-        }
-        input[type="text"],
-        input[type="email"],
-        input[type="url"],
-        input[type="tel"],
-        select {
-            width: 100%;
-            padding: 5px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            margin-bottom: 5px;
-            font-size: 15px;
-        }
-
-        /* 버튼 스타일 */
-        button[type="submit"] {
-            width: 100%;
-            height: 40px;
-            border: none;
-            background-color: #007bff;
-            color: #fff;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #0069d9;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/bsrp/css/base-style.css?vs=<%=nowDatetime%>"/>
 </head>
 <body>
 <p>기준정보 > 화주사 등록</p>
 <button onclick="Save()">저장</button>
-<button onclick="ExcelUpload()">엑셀업로드</button>
+<%--<button onclick="ExcelUpload()">엑셀업로드</button>
 <form id="uploadForm" method="post" enctype="multipart/form-data">
     <input type="file" name="excelFile">
     <button type="submit">Upload</button>
-</form>
+</form>--%>
 <div class="main-container" style="padding-top: 10px;">
     <table>
         <tr>

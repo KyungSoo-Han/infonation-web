@@ -7,24 +7,30 @@ let menuData = [
         parent_cd: ""
     }, {
         menu_cd: "MST_0001",
+        menu_nm: "사업장관리",
+        menu_location: "/mst/biz",
+        parent_yn: "N",
+        parent_cd: "MST_0000"
+    },{
+        menu_cd: "MST_0002",
         menu_nm: "센터관리",
         menu_location: "/mst/center",
         parent_yn: "N",
         parent_cd: "MST_0000"
     },{
-        menu_cd: "MST_0002",
+        menu_cd: "MST_0003",
         menu_nm: "화주사관리",
         menu_location: "/mst/customer",
         parent_yn: "N",
         parent_cd: "MST_0000"
     },{
-        menu_cd: "MST_0003",
+        menu_cd: "MST_0004",
         menu_nm: "공급사관리",
         menu_location: "/mst/customer/supplier",
         parent_yn: "N",
         parent_cd: "MST_0000"
     },{
-        menu_cd: "MST_0004",
+        menu_cd: "MST_0005",
         menu_nm: "배송지관리",
         menu_location: "/mst/customer/destination",
         parent_yn: "N",
