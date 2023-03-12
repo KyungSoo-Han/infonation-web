@@ -35,6 +35,12 @@ let menuData = [
         menu_location: "/mst/customer/destination",
         parent_yn: "N",
         parent_cd: "MST_0000"
+    },{
+        menu_cd: "MST_0006",
+        menu_nm: "품목관리",
+        menu_location: "/mst/item",
+        parent_yn: "N",
+        parent_cd: "MST_0000"
     },
 /*    {
         menu_cd: "MST_0001",

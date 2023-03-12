@@ -24,7 +24,11 @@
 </head>
 <body>
 <p>기준정보 > 화주사 등록</p>
-<button onclick="Save()">저장</button>
+<div>조회</div>
+사업장 <select id="biz"> </select>
+<div>
+    <button onclick="Save()"> 저장 </button>
+</div>
 <%--<button onclick="ExcelUpload()">엑셀업로드</button>
 <form id="uploadForm" method="post" enctype="multipart/form-data">
     <input type="file" name="excelFile">
@@ -33,11 +37,8 @@
 <div class="main-container" style="padding-top: 10px;">
     <table>
         <tr>
-            <th><label>사업장</label></th>
-            <td>
-                <select id="biz">
-                </select>
-            </td>
+            <th><label>화주사 ID</label></th>
+            <td><input type="text" id="id" ></td>
 
             <th><label>화주사명</label></th>
             <td><input type="text" id="name" ></td>

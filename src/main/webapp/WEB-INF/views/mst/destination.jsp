@@ -23,25 +23,29 @@
 </head>
 <body>
 <p>기준정보 > 공급사 등록</p>
+
+<div>조회</div>
+사업장 <select id="biz"> </select>
+<div>
 <button onclick="Save()"> 저장 </button>
+</div>
     <form autocomplete="off">
         <table>
             <tr>
-                <th><label>사업장</label></th>
-                <td>
-                    <select id="biz">
-                    </select>
-                </td>
+                <th><label>배송지 ID</label></th>
+                <td><input type="text" id="id" ></td>
+
+                <th><label>배송지명</label></th>
+                <td><input type="text" id="name" ></td>
+            </tr>
+            <tr>
 
                 <th><label>화주사</label></th>
                 <td>
                     <select id="customer">
                     </select>
                 </td>
-            </tr>
-            <tr>
-                <th><label>배송지명</label></th>
-                <td><input type="text" id="name" ></td>
+
                 <th><label>영문명</label></th>
                 <td><input type="text" id="engName" ></td>
             </tr>
