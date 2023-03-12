@@ -34,7 +34,7 @@ function getSupplier() {
 
     $.ajax({
         method: "GET",
-        url: "http://localhost:8090/api/select/supplier?bizId="+document.getElementById('biz').value+"&parentId="+document.getElementById('customer').value,
+        url: "http://api.infonation.kr/api/select/supplier?bizId="+document.getElementById('biz').value+"&parentId="+document.getElementById('customer').value,
         contentType: 'application/json',
         success: function (data) {
             console.log(data);
@@ -101,7 +101,7 @@ function Search(){
 
     $.ajax({
         method: "GET",
-        url: "http://localhost:8090/api/item/" + document.getElementById('id').value,
+        url: "http://api.infonation.kr/api/item/" + document.getElementById('id').value,
         contentType: 'application/json',
         success: function (data) {
             console.log(data);
@@ -152,7 +152,7 @@ function Search(){
 
             $.ajax({
                 method : "GET",
-                url : "http://localhost:8090/api/select/customer?bizId="
+                url : "http://api.infonation.kr/api/select/customer?bizId="
                                 +document.getElementById('biz').value+"&codeId="+data.data.customerId,
                 contentType: 'application/json',
                 success: function(sel_cust) {
@@ -164,7 +164,7 @@ function Search(){
 
                     $.ajax({
                         method: "GET",
-                        url: "http://localhost:8090/api/select/supplier?bizId="+document.getElementById('biz').value
+                        url: "http://api.infonation.kr/api/select/supplier?bizId="+document.getElementById('biz').value
                             +"&parentId="+document.getElementById('customer').value +"&codeId="+data.data.supplierId,
                         contentType: 'application/json',
                         success: function (sel_supl) {
