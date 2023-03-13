@@ -45,29 +45,29 @@
         <table>
             <tr>
                 <th><label>입고요청번호</label></th>
-                <td><input type="text" id="slip_no" ></td>
+                <td><input type="text" id="inboundNo" ></td>
 
                 <th><label>조회기간</label></th>
-                <td><input type="date" id="fdate"  > ~ <input type="date" id="tdate"></td>
+                <td><input type="date" id="fromDate"  > ~ <input type="date" id="toDate"></td>
             </tr>
             <tr>
-                <th><label>화주사코드</label></th>
+                <th><label>화주사 ID</label></th>
                 <td>
-                    <input type="text" id="cust_cd">
-                    <button type="button" onclick="SearchModal('cust','')">찾기</button>
+                    <input type="text" id="customerId">
+                    <button type="button" onclick="SearchModal('customer','')">찾기</button>
                 </td>
 
                 <th><label>화주사명</label></th>
-                <td><input type="text" id="cust_nm" readonly ></td>
+                <td><input type="text" id="customerName" readonly ></td>
 
-                <th><label>공급사코드</label></th>
+                <th><label>공급사 ID</label></th>
                 <td>
-                    <input type="text" id="custProv_cd">
-                    <button type="button" onclick="SearchModal('custProv','')">찾기</button>
+                    <input type="text" id="supplierId">
+                    <button type="button" onclick="SearchModal('supplier','')">찾기</button>
                 </td>
 
                 <th><label>공급사명</label></th>
-                <td><input type="text" id="custProv_nm" readonly></td>
+                <td><input type="text" id="supplierName" readonly></td>
             </tr>
         </table>
     </div>
@@ -100,23 +100,30 @@
         createGrid("inbound_list")
         createModalGrid("selectGrid")
 
-        document.getElementById("fdate").value = fdate.toISOString().slice(0,10);
-        document.getElementById("tdate").value = new Date().toISOString().slice(0,10);
+        document.getElementById("fromDate").value = fdate.toISOString().slice(0,10);
+        document.getElementById("toDate").value = new Date().toISOString().slice(0,10);
     });
 
-    cust_cd.addEventListener("keyup", function (event) {
-        cust_nm.value = '';
-        custProv_cd.value = '';
-        custProv_nm.value = '';
+
+    let inboundNo = document.getElementById('inboundNo');
+    let customerId = document.getElementById('customerId');
+    let customerName = document.getElementById('customerName');
+    let supplierId = document.getElementById('supplierId');
+    let supplierName = document.getElementById('supplierName');
+
+    customerId.addEventListener("keyup", function (event) {
+        customerName.value = '';
+        supplierId.value = '';
+        supplierName.value = '';
 
         if(event.key=="Enter")
-            SearchModal('cust',cust_cd.value);
+            SearchModal('customer',customerId.value);
     })
-    custProv_cd.addEventListener("keyup", function (event) {
-        custProv_nm.value = '';
+    supplierId.addEventListener("keyup", function (event) {
+        supplierName.value = '';
 
         if(event.key=="Enter")
-            SearchModal('custProv',custProv_cd.value);
+            SearchModal('supplier',supplierId.value);
     })
 
     let code = document.getElementById('code');
