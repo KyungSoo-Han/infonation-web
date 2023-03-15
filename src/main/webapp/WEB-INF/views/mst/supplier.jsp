@@ -169,7 +169,7 @@
 
         $.ajax({
             method : "POST",
-            url : "http://localhost:81/api/supplier",
+            url : "http://api.infonation.kr/api/supplier",
             headers: {
                 "userId": "1",
             },
