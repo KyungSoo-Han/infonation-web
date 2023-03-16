@@ -120,14 +120,14 @@
     });
     function findCustomer() {
         $.ajax({
-            method : "GET",
-            url : "http://api.infonation.kr/api/customer?bizId="+ document.getElementById('biz').value,
+            method: "GET",
+            url: "http://api.infonation.kr/api/select/customer?bizId=" + document.getElementById('biz').value ,
             contentType: 'application/json',
-            success: function(data) {
+            success: function (data) {
                 console.log(data);
-                for(let i = 0; i < data.data.length; i ++){
-                    console.log(data.data[i].id);
-                    $("#customer").append("<option value=" + data.data[i].id + ">" + data.data[i].name +"</option>");
+
+                for (let i = 0; i < data.length; i++) {
+                    $("#customer").append("<option value=" + data[i].codeId + ">" + data[i].codeName + "</option>");
                 }
 
             }, error: function (data) {
@@ -178,6 +178,7 @@
             success: function(data) {
                 alert('등록되었습니다.');
                 console.log(data);
+                document.getElementById('id').value = data.data.id;
             }, error: function (data) {
 
                 alert('등록을 실패했습니다.');

@@ -211,6 +211,7 @@ function Save() {
 
     jsonData.bizId = document.getElementById('biz').value;
     jsonData.customerId = document.getElementById('customer').value;
+    jsonData.supplierId = document.getElementById('supplier').value;
     jsonData.name = document.getElementById('name').value;
     jsonData.sname = document.getElementById('sname').value;
     jsonData.status = document.getElementById('status').value;
@@ -255,7 +256,24 @@ function Save() {
     jsonData.palletStandard = palletStandard;
 
     console.log(jsonData);
+    $.ajax({
+        method : "POST",
+        url : "http://api.infonation.kr/api/item",
+        headers: {
+            "userId": "1",
+        },
+        contentType: 'application/json',
+        data: JSON.stringify (jsonData),
+        success: function(data) {
+            alert('등록되었습니다.');
+            console.log(data);
+            document.getElementById('id').value = data.data.id;
+        }, error: function (data) {
 
+            alert('등록을 실패했습니다.');
+            console.log(data);
+        }
+    });
 }
 
 $("#customer").on('change', () => {

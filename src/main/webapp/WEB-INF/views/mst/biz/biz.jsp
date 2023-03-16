@@ -22,7 +22,7 @@
     <title>biz</title>
 </head>
 <body>
-<p>기준정보 > 화주사 등록</p>
+<p>기준정보 > 사업장 등록</p>
 <button onclick="Save()">저장</button>
 
 <div class="main-container" style="padding-top: 10px;">

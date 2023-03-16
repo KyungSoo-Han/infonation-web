@@ -4,27 +4,27 @@ let current;
 
 let inbound_Field = [
     {
-        "fieldName" : "slip_no",
+        "fieldName" : "inboundNo",
         "dataType" : "text"
     },
     {
-        "fieldName" : "seq_no",
+        "fieldName" : "inboundSeq",
         "dataType" : "number"
     },
     {
-        "fieldName" : "cust_cd",
+        "fieldName" : "customerId",
         "dataType" : "text"
     },
     {
-        "fieldName" : "cust_nm",
+        "fieldName" : "customerName",
         "dataType" : "text"
     },
     {
-        "fieldName" : "custProv_cd",
+        "fieldName" : "supplierId",
         "dataType" : "text"
     },
     {
-        "fieldName" : "custProv_nm",
+        "fieldName" : "supplierName",
         "dataType" : "text"
     },
     {
@@ -36,41 +36,37 @@ let inbound_Field = [
         "dataType" : "text"
     },
     {
-        "fieldName" : "item_cd",
+        "fieldName" : "itemId",
         "dataType" : "text"
     },
     {
-        "fieldName" : "item_nm",
+        "fieldName" : "itemName",
         "dataType" : "text"
     },
     {
-        "fieldName" : "item_qty",
+        "fieldName" : "qty",
         "dataType" : "number"
     },
     {
-        "fieldName" : "price_amt",
+        "fieldName" : "price",
         "dataType" : "number"
     },
     {
-        "fieldName" : "supply_amt",
-        "dataType" : "number"
-    },
-    {
-        "fieldName": "exp_dt",
+        "fieldName": "expDate",
         "dataType": "text",
         "datetimeFormat":"yyyy-MM-dd"
     },
     {
-        "fieldName": "make_dt",
+        "fieldName": "makeDate",
         "dataType": "text",
         "datetimeFormat":"yyyy-MM-dd"
     },
     {
-        "fieldName" : "provLot_no",
+        "fieldName" : "makeLotNo",
         "dataType" : "text"
     },
     {
-        "fieldName" : "item_remark",
+        "fieldName" : "subRemark",
         "dataType" : "text"
     }
 ]
@@ -78,8 +74,8 @@ let inbound_Field = [
 
 let inbound_Column =[
     {
-        "name" : "slip_no",
-        "fieldName" : "slip_no",
+        "name" : "inboundNo",
+        "fieldName" : "inboundNo",
         "type" :"data",
         "width" : "120",
         "header" :{
@@ -87,8 +83,8 @@ let inbound_Column =[
         }
     },
     {
-        "name" : "seq_no",
-        "fieldName" : "seq_no",
+        "name" : "inboundSeq",
+        "fieldName" : "inboundSeq",
         "type" :"data",
         "width" : "50",
         "header" :{
@@ -97,40 +93,42 @@ let inbound_Column =[
         numberFormat: "#,##0"
     },
     {
-        "name" : "cust_cd",
-        "fieldName" : "cust_cd",
+        "name" : "customerId",
+        "fieldName" : "customerId",
         "type" :"data",
         "width" : "80",
         "header" :{
-            "text" : "화주사코드",
+            "text" : "화주사 ID",
         }
     },
     {
-        "name" : "cust_nm",
-        "fieldName" : "cust_nm",
+        "name" : "customerName",
+        "fieldName" : "customerName",
         "type" :"data",
         "width" : "150",
         "header" :{
             "text" : "화주사명",
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
-        "name" : "custProv_cd",
-        "fieldName" : "custProv_cd",
+        "name" : "supplierId",
+        "fieldName" : "supplierId",
         "type" :"data",
         "width" : "100",
         "header" :{
-            "text" : "공급사코드",
+            "text" : "공급사 ID",
         }
     },
     {
-        "name" : "custProv_nm",
-        "fieldName" : "custProv_nm",
+        "name" : "supplierName",
+        "fieldName" : "supplierName",
         "type" :"data",
         "width" : "150",
         "header" :{
             "text" : "공급사명",
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "inboundExpDate",
@@ -148,20 +146,21 @@ let inbound_Column =[
         "width" : "150",
         "header" :{
             "text" : "비고",
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
-        "name" : "item_cd",
-        "fieldName" : "item_cd",
+        "name" : "itemId",
+        "fieldName" : "itemId",
         "type" :"data",
         "width" : "110",
         "header" :{
-            "text" : "품목 코드",
+            "text" : "품목 ID",
         }
     },
     {
-        "name" : "item_nm",
-        "fieldName" : "item_nm",
+        "name" : "itemName",
+        "fieldName" : "itemName",
         "type" :"data",
         "width" : "180",
         "header" :{
@@ -169,11 +168,12 @@ let inbound_Column =[
         },
         footer: {
             text: "합계 =>"
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
-        "name" : "item_qty",
-        "fieldName" : "item_qty",
+        "name" : "qty",
+        "fieldName" : "qty",
         "type" :"data",
         "width" : "100",
         "header" :{
@@ -187,8 +187,8 @@ let inbound_Column =[
         }
     },
     {
-        "name" : "price_amt",
-        "fieldName" : "price_amt",
+        "name" : "price",
+        "fieldName" : "price",
         "type" :"data",
         "width" : "100",
         "header" :{
@@ -197,23 +197,8 @@ let inbound_Column =[
         "numberFormat" : "#,###.00"
     },
     {
-        "name" : "supply_amt",
-        "fieldName" : "supply_amt",
-        "type" :"data",
-        "width" : "100",
-        "header" :{
-            "text" : "공급가",
-        },
-        "numberFormat" : "#,###.00",
-        footer: {
-            text: "",
-            numberFormat : "#,###.00",
-            expression: "sum",
-        }
-    },
-    {
-        "name" : "exp_dt",
-        "fieldName" : "exp_dt",
+        "name" : "expDate",
+        "fieldName" : "expDate",
         "width" : "100",
         "type" :"data",
         "header" :{
@@ -221,8 +206,8 @@ let inbound_Column =[
         }
     },
     {
-        "name" : "make_dt",
-        "fieldName" : "make_dt",
+        "name" : "makeDate",
+        "fieldName" : "makeDate",
         "width" : "100",
         "type" :"data",
         "header" :{
@@ -230,8 +215,8 @@ let inbound_Column =[
         }
     },
     {
-        "name" : "provLot_no",
-        "fieldName" : "provLot_no",
+        "name" : "makeLotNo",
+        "fieldName" : "makeLotNo",
         "type" :"data",
         "width" : "150",
         "header" :{
@@ -239,13 +224,14 @@ let inbound_Column =[
         }
     },
     {
-        "name" : "item_remark",
-        "fieldName" : "item_remark",
+        "name" : "subRemark",
+        "fieldName" : "subRemark",
         "type" :"data",
         "width" : "150",
         "header" :{
-            "text" : "비고",
-        }
+            "text" : "상세 비고",
+        },
+        styleName: 'left-align-column'
     }
 ]
 
@@ -374,19 +360,19 @@ function Search(){
 
     gridView.showLoading();
 
-    let searchCondition = new Object();
-    searchCondition.biz_cd = "10001";
-    searchCondition.slip_no = document.getElementById('slip_no').value;    // 신규 입력시 공백,
-    searchCondition.fdate = document.getElementById('fdate').value;
-    searchCondition.tdate = document.getElementById('tdate').value;
-    searchCondition.custProv_cd = document.getElementById('custProv_cd').value;
-    searchCondition.cust_cd = document.getElementById('cust_cd').value;
+    let srchCond = new Object();
+    srchCond.bizId = "1";
+    srchCond.inboundNo = document.getElementById('inboundNo').value;    // 신규 입력시 공백,
+    srchCond.fromDate = document.getElementById('fromDate').value;
+    srchCond.toDate = document.getElementById('toDate').value;
+    srchCond.customerId = document.getElementById('customerId').value;
+    srchCond.supplierId = document.getElementById('supplierId').value;
 
     $.ajax({
         method : "POST",
         url : "http://api.infonation.kr/api/inbound/list",
         contentType: 'application/json',
-        data: JSON.stringify(searchCondition),
+        data: JSON.stringify(srchCond),
         success: function(data) {
 
             dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기

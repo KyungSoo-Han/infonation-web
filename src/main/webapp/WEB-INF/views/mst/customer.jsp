@@ -143,7 +143,6 @@
         let addressData = new Object() ;
         jsonData.bizId = 1;
         jsonData.name = document.getElementById('name').value;
-        jsonData.engName = document.getElementById('engName').value;
         jsonData.ownerName = document.getElementById('ownerName').value;
         jsonData.email = document.getElementById('email').value;
         jsonData.telNo = document.getElementById('telNo').value;
@@ -151,8 +150,8 @@
         jsonData.homepage = document.getElementById('homepage').value;
 
         addressData.zipNo = document.getElementById('zipNo').value;
-        addressData.zipAddr1 = document.getElementById('zipNddr1').value;
-        addressData.zipAddr2 = document.getElementById('zipNddr2').value;
+        addressData.zipAddr1 = document.getElementById('zipAddr1').value;
+        addressData.zipAddr2 = document.getElementById('zipAddr2').value;
         jsonData.address = addressData;
 
         jsonData.bizItem = document.getElementById('bizItem').value;
@@ -168,6 +167,7 @@
             data: JSON.stringify (jsonData),
             success: function(data) {
                 alert('등록되었습니다.');
+                document.getElementById('id').value = data.id;
                 console.log(data);
             }, error: function (data) {
 

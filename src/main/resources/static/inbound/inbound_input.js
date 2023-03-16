@@ -57,6 +57,7 @@ let inbound_Column =[
         "header" :{
             "text" : "순번",
         },
+        "visible" :false,
         numberFormat: "#,##0",
         styleCallback: function(grid, dataCell){
             let ret = {}
@@ -70,7 +71,7 @@ let inbound_Column =[
         "type" :"data",
         "width" : "100",
         "header" :{
-            "text" : "품목 코드",
+            "text" : "품목 ID",
         },
         button: "action",
         buttonVisibility: "always",
@@ -101,7 +102,8 @@ let inbound_Column =[
             ret.styleName = "readonly-column";
 
             return ret;
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "qty",
