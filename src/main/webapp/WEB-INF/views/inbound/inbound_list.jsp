@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>입고요청현황</title>
+    <title>입고현황</title>
     <%
         Date now = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -37,14 +37,14 @@
     </style>
 </head>
 <body>
-    <p>입고요청 > 입고요청현황</p>
+    <p>입고 > 입고현황</p>
 
     <button id="searchBtn" onclick="Search()">조회</button>
     <button id="exportExcel" onclick="excelExport()">엑셀받기</button>
     <div>
         <table>
             <tr>
-                <th><label>입고요청번호</label></th>
+                <th><label>입고번호</label></th>
                 <td><input type="text" id="slip_no" ></td>
 
                 <th><label>조회기간</label></th>
