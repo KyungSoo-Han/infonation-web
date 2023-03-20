@@ -41,6 +41,12 @@ let menuData = [
         menu_location: "/mst/item",
         parent_yn: "N",
         parent_cd: "MST_0000"
+    },{
+        menu_cd: "MST_0007",
+        menu_nm: "품목 엑셀업로드",
+        menu_location: "/mst/item/ExcelUpload",
+        parent_yn: "N",
+        parent_cd: "MST_0000"
     },
 /*    {
         menu_cd: "MST_0001",

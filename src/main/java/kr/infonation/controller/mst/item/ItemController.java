@@ -12,4 +12,8 @@ public class ItemController {
     public String item(){
         return "/mst/item/item";
     }
+    @GetMapping("ExcelUpload")
+    public String item_excel_upload(){
+        return "/mst/item/item_excel_upload";
+    }
 }
