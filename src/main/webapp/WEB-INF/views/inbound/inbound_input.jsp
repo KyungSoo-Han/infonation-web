@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>입고요청등록</title>
+    <title>입고등록</title>
 	<%
 		Date now = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -38,7 +38,7 @@
 	</style>
 </head>
 <body>
-	<p>입고요청 > 입고요청등록</p>
+	<p>입고 > 입고등록</p>
 	<button id="searchBtn" onclick="Search()">조회</button>
 	<button id="newBtn" onclick="New()">신규</button>
 	<button id="saveBtn" onclick="Save()">저장</button>
@@ -49,10 +49,10 @@
 			<form autocomplete="off">
 				<table>
 					<tr>
-						<th><label>입고요청번호</label></th>
+						<th><label>입고번호</label></th>
 						<td><input type="text" id="inboundNo" ></td>
 
-						<th><label>입고요청일자</label></th>
+						<th><label>입고일자</label></th>
 						<td><input type="date" id="inboundDate"  ></td>
 
 						<th><label>입고예정일자</label></th>
@@ -130,7 +130,7 @@
 
 	inboundNo.addEventListener("keyup", function (event) {
 		if(inboundNo.value == ''){
-			alert('입고요청번호를 입력후 조회하세요.');
+			alert('입고번호를 입력후 조회하세요.');
 			return;
 		}
 		if(event.key=="Enter")

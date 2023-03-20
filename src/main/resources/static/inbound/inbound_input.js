@@ -297,7 +297,7 @@ function addRow() {
 }
 function Search(){
     if(document.getElementById('inboundNo').value == ''){
-        alert('입고요청번호를 입력후 조회하세요.');
+        alert('입고번호를 입력후 조회하세요.');
         return;
     }
 

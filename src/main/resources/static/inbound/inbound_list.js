@@ -79,7 +79,7 @@ let inbound_Column =[
         "type" :"data",
         "width" : "120",
         "header" :{
-            "text" : "입고요청번호",
+            "text" : "입고번호",
         }
     },
     {
@@ -395,7 +395,7 @@ function excelExport() {
     gridView.exportGrid({
         type: "excel",
         target: "local",
-        fileName: "입고요청현황" + +"_"+tempTime +".xlsx",
+        fileName: "입고현황" + +"_"+tempTime +".xlsx",
         applyDynamicStyles: true,
         done: function () {
             // 엑셀 받기 완료 후

@@ -63,13 +63,13 @@ let menuData = [
         parent_cd: ""
     }, {
         menu_cd: "INBOUND_0001",
-        menu_nm: "입고요청등록",
+        menu_nm: "입고등록",
         menu_location: "/inbound/inbound_input",
         parent_yn: "N",
         parent_cd: "INBOUND_0000"
     },{
         menu_cd: "INBOUND_0002",
-        menu_nm: "입고요청현황",
+        menu_nm: "입고현황",
         menu_location: "/inbound/inbound_list",
         parent_yn: "N",
         parent_cd: "INBOUND_0000"

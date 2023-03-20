@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>입고요청현황</title>
+    <title>입고현황</title>
     <%
         Date now = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -37,37 +37,37 @@
     </style>
 </head>
 <body>
-    <p>입고요청 > 입고요청현황</p>
+    <p>입고 > 입고현황</p>
 
     <button id="searchBtn" onclick="Search()">조회</button>
     <button id="exportExcel" onclick="excelExport()">엑셀받기</button>
     <div>
         <table>
             <tr>
-                <th><label>입고요청번호</label></th>
-                <td><input type="text" id="inboundNo" ></td>
+                <th><label>입고번호</label></th>
+                <td><input type="text" id="slip_no" ></td>
 
                 <th><label>조회기간</label></th>
-                <td><input type="date" id="fromDate"  > ~ <input type="date" id="toDate"></td>
+                <td><input type="date" id="fdate"  > ~ <input type="date" id="tdate"></td>
             </tr>
             <tr>
-                <th><label>화주사 ID</label></th>
+                <th><label>화주사코드</label></th>
                 <td>
-                    <input type="text" id="customerId">
-                    <button type="button" onclick="SearchModal('customer','')">찾기</button>
+                    <input type="text" id="cust_cd">
+                    <button type="button" onclick="SearchModal('cust','')">찾기</button>
                 </td>
 
                 <th><label>화주사명</label></th>
-                <td><input type="text" id="customerName" readonly ></td>
+                <td><input type="text" id="cust_nm" readonly ></td>
 
-                <th><label>공급사 ID</label></th>
+                <th><label>공급사코드</label></th>
                 <td>
-                    <input type="text" id="supplierId">
-                    <button type="button" onclick="SearchModal('supplier','')">찾기</button>
+                    <input type="text" id="custProv_cd">
+                    <button type="button" onclick="SearchModal('custProv','')">찾기</button>
                 </td>
 
                 <th><label>공급사명</label></th>
-                <td><input type="text" id="supplierName" readonly></td>
+                <td><input type="text" id="custProv_nm" readonly></td>
             </tr>
         </table>
     </div>
@@ -100,30 +100,23 @@
         createGrid("inbound_list")
         createModalGrid("selectGrid")
 
-        document.getElementById("fromDate").value = fdate.toISOString().slice(0,10);
-        document.getElementById("toDate").value = new Date().toISOString().slice(0,10);
+        document.getElementById("fdate").value = fdate.toISOString().slice(0,10);
+        document.getElementById("tdate").value = new Date().toISOString().slice(0,10);
     });
 
-
-    let inboundNo = document.getElementById('inboundNo');
-    let customerId = document.getElementById('customerId');
-    let customerName = document.getElementById('customerName');
-    let supplierId = document.getElementById('supplierId');
-    let supplierName = document.getElementById('supplierName');
-
-    customerId.addEventListener("keyup", function (event) {
-        customerName.value = '';
-        supplierId.value = '';
-        supplierName.value = '';
+    cust_cd.addEventListener("keyup", function (event) {
+        cust_nm.value = '';
+        custProv_cd.value = '';
+        custProv_nm.value = '';
 
         if(event.key=="Enter")
-            SearchModal('customer',customerId.value);
+            SearchModal('cust',cust_cd.value);
     })
-    supplierId.addEventListener("keyup", function (event) {
-        supplierName.value = '';
+    custProv_cd.addEventListener("keyup", function (event) {
+        custProv_nm.value = '';
 
         if(event.key=="Enter")
-            SearchModal('supplier',supplierId.value);
+            SearchModal('custProv',custProv_cd.value);
     })
 
     let code = document.getElementById('code');
