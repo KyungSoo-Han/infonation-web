@@ -77,7 +77,7 @@
             headers:{
                 "userId": "1",
             },
-            url: 'http://localhost:81/api/item/excelUpload',
+            url: 'http://localhost:81/api/item/rabbitmq',
             data: formData,
             contentType: false,
             processData: false,
