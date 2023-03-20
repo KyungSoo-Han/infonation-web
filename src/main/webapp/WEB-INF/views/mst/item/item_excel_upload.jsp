@@ -51,7 +51,7 @@
 
     <button onclick="ExcelUpload()">엑셀업로드</button>
     <form id="uploadForm" method="post" enctype="multipart/form-data">
-        <input type="file" name="excelFile">
+        <input type="file" id="excelFile" name="excelFile" >
         <button type="submit">Upload</button>
     </form>
 
@@ -59,17 +59,29 @@
 <script>
 
     function ExcelUpload() {
-        let form = document.getElementById('uploadForm');
-        console.log(form);
-        let formData = new FormData(form); // 폼 데이터 생성
+
+        let excelUploadRequest = {
+            "bizId" : "1",
+            "customerId" : "1",
+            "supplierId" : "1"
+        };
+        let excelFile = document.getElementById('excelFile').files[0];
+        let formData = new FormData(); // 폼 데이터 생성
+
+        formData.append('excelFile', excelFile);
+        formData.append('excelUploadRequest', new Blob([JSON.stringify(excelUploadRequest)],{type: "application/json"}));
+
         console.log(formData);
         $.ajax({
             type: 'POST',
+            headers:{
+                "userId": "1",
+            },
             url: 'http://localhost:81/api/item/excelUpload',
             data: formData,
-            cache: false,
             contentType: false,
             processData: false,
+            mimeType: "multipart/form-data",
             success: function(result) {
                 console.log(result); // 성공 처리
             },
@@ -77,6 +89,7 @@
                 console.error(xhr.responseText); // 오류 처리
             }
         });
+
     }
 </script>
 </html>
