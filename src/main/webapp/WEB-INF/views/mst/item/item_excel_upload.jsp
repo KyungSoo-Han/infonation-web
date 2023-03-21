@@ -76,7 +76,7 @@
             headers:{
                 "userId": "1",
             },
-            url: 'http://localhost:81/api/item/rabbitmq',
+            url: 'http://api.infonation.kr/api/item/rabbitmq',
             data: formData,
             contentType: false,
             processData: false,

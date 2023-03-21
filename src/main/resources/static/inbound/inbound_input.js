@@ -306,7 +306,7 @@ function Search(){
         method : "GET",
         url : "http://api.infonation.kr/api/inbound?inboundNo="+document.getElementById('inboundNo').value,
         contentType: 'application/json',
-        heagers:{
+        headers:{
             "userId": "1"
         },
         success: function(data) {
@@ -403,14 +403,15 @@ function New(){
 function Delete(){
     $.ajax({
         method : "DELETE",
-        url : "http://api.infonation.kr/api/inbound/delete/10001/"+document.getElementById('slip_no').value,
+        url : "http://api.infonation.kr/api/inbound/1/"+document.getElementById('inboundNo').value,
         contentType: 'application/json',
         success: function(data) {
             New();
             gridView.closeLoading();                    // 로딩창 닫기
-
+            console.log(data);
         }, error: function (data) {
             gridView.closeLoading();
+            console.log(data);
         }
     });
 }
