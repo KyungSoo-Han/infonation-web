@@ -49,11 +49,10 @@
         </tr>
     </table>
 
-    <button onclick="ExcelUpload()">엑셀업로드</button>
     <form id="uploadForm" method="post" enctype="multipart/form-data">
         <input type="file" id="excelFile" name="excelFile" >
-        <button type="submit">Upload</button>
     </form>
+    <button onclick="ExcelUpload()">엑셀업로드</button>
 
 </body>
 <script>
