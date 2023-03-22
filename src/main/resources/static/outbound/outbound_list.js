@@ -370,7 +370,7 @@ function Search(){
 
     $.ajax({
         method : "POST",
-        url : "http://localhost:81/api/outbound/list",
+        url : "http://api.infonation.kr/api/outbound/list",
         contentType: 'application/json',
         data: JSON.stringify(srchCond),
         success: function(data) {
