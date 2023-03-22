@@ -74,14 +74,27 @@ let menuData = [
         parent_yn: "N",
         parent_cd: "INBOUND_0000"
     },
-
-   {
-        menu_cd: "TEST_01",
-        menu_nm: "TEST 1",
-        menu_location: "/test/test",
+    {
+        menu_cd: "OUTBOUND_0000",
+        menu_nm: "출고관리",
+        menu_location: "#",
         parent_yn: "Y",
         parent_cd: ""
-    } /*,
+    }, {
+        menu_cd: "OUTBOUND_0001",
+        menu_nm: "출고등록",
+        menu_location: "/outbound/outbound_input",
+        parent_yn: "N",
+        parent_cd: "OUTBOUND_0000"
+    },{
+        menu_cd: "OUTBOUND_0002",
+        menu_nm: "출고현황",
+        menu_location: "/outbound/outbound_list",
+        parent_yn: "N",
+        parent_cd: "OUTBOUND_0000"
+    }
+
+    /*,
     {
         menu_cd: "TEST_02",
         menu_nm: "TEST 2",
