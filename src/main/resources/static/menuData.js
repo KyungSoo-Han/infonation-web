@@ -92,8 +92,15 @@ let menuData = [
         menu_location: "/outbound/outbound_list",
         parent_yn: "N",
         parent_cd: "OUTBOUND_0000"
-    }
+    },
 
+    {
+        menu_cd: "STOCK_0000",
+        menu_nm: "재고현황",
+        menu_location: "/stk/item_stock",
+        parent_yn: "Y",
+        parent_cd: ""
+    }
     /*,
     {
         menu_cd: "TEST_02",
