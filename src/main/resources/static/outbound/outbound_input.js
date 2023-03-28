@@ -2,9 +2,9 @@ let dataProvider, gridView;
 let current;
 
 
-let inbound_Field = [
+let outbound_Field = [
     {
-        "fieldName" : "inboundSeq",
+        "fieldName" : "outboundSeq",
         "dataType" : "number"
     },
     {
@@ -48,10 +48,10 @@ let inbound_Field = [
 ]
 
 
-let inbound_Column =[
+let outbound_Column =[
     {
-        "name" : "inboundSeq",
-        "fieldName" : "inboundSeq",
+        "name" : "outboundSeq",
+        "fieldName" : "outboundSeq",
         "type" :"data",
         "width" : "50",
         "header" :{
@@ -204,7 +204,7 @@ let inbound_Column =[
 ]
 function createGrid(container) {
     dataProvider = new RealGrid.LocalDataProvider();
-    dataProvider.setFields(inbound_Field);
+    dataProvider.setFields(outbound_Field);
     dataProvider.setOptions({
         softDeleting: false                 // 행 삭제 시 실제로 삭제 됨, true: 삭제되지 않고 상태를 보여줌
     })
@@ -228,7 +228,7 @@ function createGrid(container) {
     gridView.filterMode = 'explicit';
 
     gridView.setDataSource(dataProvider);
-    gridView.setColumns(inbound_Column);
+    gridView.setColumns(outbound_Column);
 
     /**
      * 셀 버튼 클릭 이벤트
@@ -296,7 +296,7 @@ function addRow() {
     dataProvider.addRow({});
 }
 function Search(){
-    if(document.getElementById('inboundNo').value == ''){
+    if(document.getElementById('outboundNo').value == ''){
         alert('입고번호를 입력후 조회하세요.');
         return;
     }
@@ -304,7 +304,7 @@ function Search(){
     gridView.showLoading();
     $.ajax({
         method : "GET",
-        url : "http://api.infonation.kr/api/inbound?inboundNo="+document.getElementById('inboundNo').value,
+        url : "http://api.infonation.kr/api/outbound?outboundNo="+document.getElementById('outboundNo').value,
         contentType: 'application/json',
         headers:{
             "userId": "1"
@@ -312,13 +312,13 @@ function Search(){
         success: function(data) {
             console.log(data.data[0]);
             if( data.data[0] !== undefined) {
-                document.getElementById('inboundNo').readOnly = true;                   // 전표 텍스트박스 readOnly
-                document.getElementById('inboundDate').value = data.data[0].inboundDate;
-                document.getElementById('inboundExpDate').value = data.data[0].inboundExpDate;
+                document.getElementById('outboundNo').readOnly = true;                   // 전표 텍스트박스 readOnly
+                document.getElementById('outboundDate').value = data.data[0].outboundDate;
+                document.getElementById('outboundExpDate').value = data.data[0].outboundExpDate;
                 document.getElementById('customerId').value = data.data[0].customerId;
                 document.getElementById('customerName').value = data.data[0].customerName;
-                document.getElementById('supplierId').value = data.data[0].supplierId;
-                document.getElementById('supplierName').value = data.data[0].supplierName;
+                document.getElementById('destinationId').value = data.data[0].destinationId;
+                document.getElementById('destinationName').value = data.data[0].destinationName;
                 document.getElementById('remark').value = data.data[0].remark;
 
                 dataProvider.fillJsonData(data.data[0].itemResponse, {});   // 결과 데이터 그리드에 채워 넣기
@@ -344,11 +344,11 @@ function Save(){
 
     mainData.bizId = '1';
     mainData.centerId = '1';
-    mainData.inboundNo = document.getElementById('inboundNo').value;    // 신규 입력시 공백,
-    mainData.inboundDate = document.getElementById('inboundDate').value;
-    mainData.supplierId = document.getElementById('supplierId').value;
+    mainData.outboundNo = document.getElementById('outboundNo').value;    // 신규 입력시 공백,
+    mainData.outboundDate = document.getElementById('outboundDate').value;
+    mainData.destinationId = document.getElementById('destinationId').value;
     mainData.customerId = document.getElementById('customerId').value;
-    mainData.inboundExpDate = document.getElementById('inboundExpDate').value;
+    mainData.outboundExpDate = document.getElementById('outboundExpDate').value;
     mainData.remark = document.getElementById('remark').value;
 
     if(saveData.length > 0) {
@@ -365,7 +365,7 @@ function Save(){
     
     $.ajax({
         method : "POST",
-        url : "http://api.infonation.kr/api/inbound",
+        url : "http://localhost:81/api/outbound",
         contentType: 'application/json',
         headers: {
             "userId": "1",
@@ -377,8 +377,8 @@ function Save(){
             dataProvider.clearRowStates();              // 추가 & 수정 상태 초기화
             gridView.closeLoading();                    // 로딩창 닫기
 
-            document.getElementById('inboundNo').value = data.data.inboundNo;       // 채번된 전표번호 입력
-            document.getElementById('inboundNo').readOnly  = true;                   // 전표 텍스트박스 readOnly
+            document.getElementById('outboundNo').value = data.data.outboundNo;       // 채번된 전표번호 입력
+            document.getElementById('outboundNo').readOnly  = true;                   // 전표 텍스트박스 readOnly
 
         }, error: function (data) {
             gridView.closeLoading();
@@ -386,7 +386,7 @@ function Save(){
     });
 }
 function New(){
-    document.getElementById('inboundNo').readOnly  = false;
+    document.getElementById('outboundNo').readOnly  = false;
 
     let inputs = document.getElementsByTagName('input');
     for(let i = 0; i < inputs.length; i++) {
@@ -403,7 +403,7 @@ function New(){
 function Delete(){
     $.ajax({
         method : "DELETE",
-        url : "http://api.infonation.kr/api/inbound/1/"+document.getElementById('inboundNo').value,
+        url : "http://api.infonation.kr/api/outbound/1/"+document.getElementById('outboundNo').value,
         contentType: 'application/json',
         success: function(data) {
             New();
@@ -432,7 +432,7 @@ function DeleteItem(){
         jsonData.slip_dt = document.getElementById('slip_dt').value;
         jsonData.custProv_cd = document.getElementById('custProv_cd').value;
         jsonData.cust_cd = document.getElementById('cust_cd').value;
-        jsonData.inboundExpDate = document.getElementById('inboundExpDate').value;
+        jsonData.outboundExpDate = document.getElementById('outboundExpDate').value;
         jsonData.remark = document.getElementById('remark').value;
         jsonData.user_id = 'hanks';
 
@@ -450,7 +450,7 @@ function DeleteItem(){
 
     $.ajax({
         method : "DELETE",
-        url : "http://api.infonation.kr/api/inbound/deleteitem",
+        url : "http://api.infonation.kr/api/outbound/deleteitem",
         contentType: 'application/json',
         data: JSON.stringify (data),
         success: function(data) {
