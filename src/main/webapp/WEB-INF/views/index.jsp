@@ -191,6 +191,7 @@
                 <div class="info">
                     <a href="#" class="d-block">한경수 님</a>
                 </div>
+                <a href="/user/loginForm">login</a>
             </div>
 
             <!-- SidebarSearch Form -->
