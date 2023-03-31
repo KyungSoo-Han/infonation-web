@@ -14,6 +14,7 @@ function Search() {
         success: function(data) {
             console.log(data);
             sessionStorage.setItem("token", data.data.token);
+            sessionStorage.setItem("userName",data.data.userInfo.name );
             window.location.replace("/");
 
 

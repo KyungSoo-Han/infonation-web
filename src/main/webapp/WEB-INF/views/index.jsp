@@ -191,6 +191,7 @@
                 </div>
                 <div class="info">
                     <a href="#" class="d-block" id="username"></a>
+                    <a href="javascript:logout()" class="d-block" id="logout-str"></a>
                 </div>
                 <div class="navbar-nav overflow-hidden">
                     <a href="/user/loginForm" id="login-link"></a>
@@ -282,17 +283,25 @@
 <script src="/menuData.js?vs=<%=nowDatetime%>"></script>
 <script>
     const token = sessionStorage.getItem("token");
+    const userName = sessionStorage.getItem("userName");
     console.log(token);
 
     const username = document.getElementById("username");
+    const logoutStr = document.getElementById("logout-str");
     const loginLink = document.getElementById("login-link");
     const signupLink = document.getElementById("signup-link");
 
     if (token != null) {
-        username.textContent = "한경수 님";
+        username.textContent = userName;
+        logoutStr.textContent = "로그아웃";
     } else {
         loginLink.textContent = "로그인";
         signupLink.textContent= "회원가입";
+    }
+
+    function logout(){
+        sessionStorage.clear();
+        location.reload();
     }
 </script>
 </body>
