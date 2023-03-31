@@ -33,9 +33,11 @@ function Save() {
         data:saveData,
         success: function(data) {
             console.log(data);
+
             window.location.replace("/");
         }, error: function (data) {
             console.log(data);
         }
+
     });
 }
