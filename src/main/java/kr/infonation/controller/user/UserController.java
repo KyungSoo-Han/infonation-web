@@ -10,7 +10,7 @@ public class UserController {
 
     @GetMapping("/loginForm")
     public String loginForm(){
-        return "/user/user";
+        return "/user/login";
     }
     @GetMapping("/createUser")
     public String createUser(){
