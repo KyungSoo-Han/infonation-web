@@ -185,13 +185,17 @@
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
                 <div class="image">
                     <img src="dist/img/Arsenal_cannon.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">한경수 님</a>
+                    <a href="#" class="d-block" id="username"></a>
                 </div>
-                <a href="/user/loginForm">login</a>
+                <div class="navbar-nav overflow-hidden">
+                    <a href="/user/loginForm" id="login-link"></a>
+                    <a href="/user/signup" id="signup-link"></a>
+                </div>
             </div>
 
             <!-- SidebarSearch Form -->
@@ -276,6 +280,20 @@
 <script src="dist/js/demo.js"></script>
 
 <script src="/menuData.js?vs=<%=nowDatetime%>"></script>
+<script>
+    const token = sessionStorage.getItem("token");
+    console.log(token);
 
+    const username = document.getElementById("username");
+    const loginLink = document.getElementById("login-link");
+    const signupLink = document.getElementById("signup-link");
+
+    if (token != null) {
+        username.textContent = "한경수 님";
+    } else {
+        loginLink.textContent = "로그인";
+        signupLink.textContent= "회원가입";
+    }
+</script>
 </body>
 </html>

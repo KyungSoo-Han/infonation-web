@@ -28,12 +28,11 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 
-<script type="text/javascript" src="/user/user.js?vs=<%=nowDatetime%>"></script>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>WMS </b>Infonation</a>
+        <a href="../../index.jsp"><b>WMS </b>Infonation</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -42,7 +41,7 @@
 
             <form method="post">
                 <div class="input-group mb-3">
-                    <input type="email" id="email" class="form-control" placeholder="Email">
+                    <input type="email" id="email" class="form-control" value="1234@email.com" placeholder="1234@email.com">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -50,7 +49,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" id="password" class="form-control" placeholder="Password">
+                    <input type="password" id="password" class="form-control" value="1234" placeholder="1234">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -91,5 +90,7 @@
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
+
+<script type="text/javascript" src="/user/login.js?vs=<%=nowDatetime%>"></script>
 </body>
 </html>

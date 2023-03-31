@@ -13,7 +13,7 @@ function Search() {
         data:JSON.stringify(requestBody),
         success: function(data) {
             console.log(data);
-            localStorage.setItem('token', data.token);
+            sessionStorage.setItem("token", data.data.token);
             window.location.replace("/");
 
 
