@@ -192,8 +192,9 @@
                 <div class="info">
                     <a href="#" class="d-block" id="username"></a>
                 </div>
-                <div class="info">
-                <a href="/user/loginForm" class="d-block"  id="login-link"></a>
+                <div class="navbar-nav overflow-hidden">
+                    <a href="/user/loginForm" id="login-link"></a>
+                    <a href="/user/signup" id="signup-link"></a>
                 </div>
             </div>
 
@@ -285,11 +286,13 @@
 
     const username = document.getElementById("username");
     const loginLink = document.getElementById("login-link");
+    const signupLink = document.getElementById("signup-link");
 
     if (token != null) {
         username.textContent = "한경수 님";
     } else {
         loginLink.textContent = "로그인";
+        signupLink.textContent= "회원가입";
     }
 </script>
 </body>

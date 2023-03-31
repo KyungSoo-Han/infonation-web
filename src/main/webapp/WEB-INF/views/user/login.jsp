@@ -32,7 +32,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>WMS </b>Infonation</a>
+        <a href="../../index.jsp"><b>WMS </b>Infonation</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
