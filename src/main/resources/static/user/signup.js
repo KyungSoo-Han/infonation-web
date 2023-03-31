@@ -17,24 +17,25 @@ function Save() {
         alert('비밀번호가 다릅니다. 다시 확인해주세요.');
         return;
     }
-    let settings = {
-        "url": "http://localhost:81/api/user",
-        "method": "POST",
-        "timeout": 0,
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "data": JSON.stringify({
-            "email": email.value,
-            "name": name.value,
-            "password": password.value,
-            "phoneNo": document.getElementById('phoneNo').value,
-            "role": "ADMIN",
-            "birthDate": document.getElementById('birthDate').value
-        }),
-    };
+    let saveData = JSON.stringify({
+        "email": email.value,
+        "name": name.value,
+        "password": password.value,
+        "phoneNo": document.getElementById('phoneNo').value,
+        "role": "ADMIN",
+        "birthDate": document.getElementById('birthDate').value
+    });
 
-    $.ajax(settings).done(function (response) {
-        console.log(response);
+    $.ajax({
+        method : "POST",
+        url : "http://localhost:81/api/user", //?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
+        contentType: 'application/json',
+        data:saveData,
+        success: function(data) {
+            console.log(data);
+            //window.location.replace("/");
+        }, error: function (data) {
+            console.log(data);
+        }
     });
 }
