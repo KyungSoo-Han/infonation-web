@@ -181,7 +181,7 @@ function Search(){
 
     $.ajax({
         method : "POST",
-        url : "http://localhost:81/api/stock",
+        url : "http://api.infonation.kr/api/stock",
         contentType: 'application/json',
         data: JSON.stringify(srchCond),
         success: function(data) {

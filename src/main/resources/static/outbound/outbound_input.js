@@ -365,7 +365,7 @@ function Save(){
     
     $.ajax({
         method : "POST",
-        url : "http://localhost:81/api/outbound",
+        url : "http://api.infonation.kr/api/outbound",
         contentType: 'application/json',
         headers: {
             "userId": "1",

@@ -28,7 +28,7 @@ function Save() {
 
     $.ajax({
         method : "POST",
-        url : "http://localhost:81/api/user", //?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
+        url : "http://api.infonation.kr/api/user", //?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
         contentType: 'application/json',
         data:saveData,
         success: function(data) {
