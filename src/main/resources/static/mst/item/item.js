@@ -1,6 +1,6 @@
 $.ajax({
     method : "GET",
-    url : "http://api.infonation.kr/api/biz",
+    url : sessionStorage.getItem("serverUrl") + "/api/biz",
     contentType: 'application/json',
     success: function(data) {
         console.log(data);
@@ -15,7 +15,7 @@ $.ajax({
 
 $.ajax({
     method : "GET",
-    url : "http://api.infonation.kr/api/customer?bizId=1",
+    url : sessionStorage.getItem("serverUrl") + "/api/customer?bizId=1",
     contentType: 'application/json',
     success: function(data) {
         console.log(data);
@@ -34,7 +34,7 @@ function getSupplier() {
 
     $.ajax({
         method: "GET",
-        url: "http://api.infonation.kr/api/select/supplier?bizId="+document.getElementById('biz').value+"&parentId="+document.getElementById('customer').value,
+        url: sessionStorage.getItem("serverUrl") + "/api/select/supplier?bizId="+document.getElementById('biz').value+"&parentId="+document.getElementById('customer').value,
         contentType: 'application/json',
         success: function (data) {
             console.log(data);
@@ -101,7 +101,7 @@ function Search(){
 
     $.ajax({
         method: "GET",
-        url: "http://api.infonation.kr/api/item/" + document.getElementById('id').value,
+        url: sessionStorage.getItem("serverUrl") + "/api/item/" + document.getElementById('id').value,
         contentType: 'application/json',
         success: function (data) {
             console.log(data);
@@ -152,7 +152,7 @@ function Search(){
 
             $.ajax({
                 method : "GET",
-                url : "http://api.infonation.kr/api/select/customer?bizId="
+                url : sessionStorage.getItem("serverUrl") + "/api/select/customer?bizId="
                                 +document.getElementById('biz').value+"&codeId="+data.data.customerId,
                 contentType: 'application/json',
                 success: function(sel_cust) {
@@ -164,7 +164,7 @@ function Search(){
 
                     $.ajax({
                         method: "GET",
-                        url: "http://api.infonation.kr/api/select/supplier?bizId="+document.getElementById('biz').value
+                        url: sessionStorage.getItem("serverUrl") + "/api/select/supplier?bizId="+document.getElementById('biz').value
                             +"&parentId="+document.getElementById('customer').value +"&codeId="+data.data.supplierId,
                         contentType: 'application/json',
                         success: function (sel_supl) {
@@ -258,7 +258,7 @@ function Save() {
     console.log(jsonData);
     $.ajax({
         method : "POST",
-        url : "http://api.infonation.kr/api/item",
+        url : sessionStorage.getItem("serverUrl") + "/api/item",
         headers: {
             "userId": "1",
         },

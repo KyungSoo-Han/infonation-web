@@ -102,7 +102,7 @@
 
     $.ajax({
         method : "GET",
-        url : "http://api.infonation.kr/api/biz",
+        url : sessionStorage.getItem("serverUrl") + "/api/biz",
         contentType: 'application/json',
         success: function(data) {
             console.log(data);

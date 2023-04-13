@@ -248,7 +248,7 @@ function Search(){
 
     $.ajax({
         method: "GET",
-        url: "http://localhost/api/customer/list?"+"bizCd="+bizCd+"",
+        url: sessionStorage.getItem("serverUrl") + "/api/customer/list?"+"bizCd="+bizCd+"",
         contentType: 'application/json',
         success: function(data) {
             if (data != null) {

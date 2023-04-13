@@ -370,7 +370,7 @@ function Search(){
 
     $.ajax({
         method : "POST",
-        url : "http://api.infonation.kr/api/inbound/list",
+        url : sessionStorage.getItem("serverUrl") + "/api/inbound/list",
         contentType: 'application/json',
         data: JSON.stringify(srchCond),
         success: function(data) {

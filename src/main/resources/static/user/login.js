@@ -8,7 +8,7 @@ function Search() {
 
     $.ajax({
         method : "POST",
-        url : "http://api.infonation.kr/api/user/login", //?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
+        url : sessionStorage.getItem("serverUrl") + "/api/user/login", //?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
         contentType: 'application/json',
         data:JSON.stringify(requestBody),
         success: function(data) {
