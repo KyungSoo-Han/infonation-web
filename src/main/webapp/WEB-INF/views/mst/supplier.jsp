@@ -104,7 +104,7 @@
 <script>
     $.ajax({
         method : "GET",
-        url : "http://api.infonation.kr/api/biz",
+        url : sessionStorage.getItem("serverUrl") + "/api/biz",
         contentType: 'application/json',
         success: function(data) {
             console.log(data);
@@ -121,7 +121,7 @@
     function findCustomer() {
         $.ajax({
             method: "GET",
-            url: "http://api.infonation.kr/api/select/customer?bizId=" + document.getElementById('biz').value ,
+            url: sessionStorage.getItem("serverUrl") + "/api/select/customer?bizId=" + document.getElementById('biz').value ,
             contentType: 'application/json',
             success: function (data) {
                 console.log(data);
@@ -169,7 +169,7 @@
 
         $.ajax({
             method : "POST",
-            url : "http://api.infonation.kr/api/supplier",
+            url : sessionStorage.getItem("serverUrl") + "/api/supplier",
             headers: {
                 "userId": "1",
             },

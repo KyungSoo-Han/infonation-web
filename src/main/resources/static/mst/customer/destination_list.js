@@ -4,7 +4,7 @@ let current;
 
 $.ajax({
     method : "GET",
-    url : "http://localhost/api/select/customer/"+ bizCd,
+    url : sessionStorage.getItem("serverUrl") + "/api/select/customer/"+ bizCd,
     contentType: 'application/json',
     success: function(data) {
         console.log(data);
@@ -264,7 +264,7 @@ function Search(){
 
     $.ajax({
         method: "GET",
-        url: "http://localhost/api/destination/list?"+"bizCd="+bizCd+"&customerCd="+customer+"",
+        url: sessionStorage.getItem("serverUrl") + "/api/destination/list?"+"bizCd="+bizCd+"&customerCd="+customer+"",
         contentType: 'application/json',
         success: function(data) {
             if (data != null) {

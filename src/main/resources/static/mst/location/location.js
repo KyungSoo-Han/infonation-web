@@ -4,7 +4,7 @@ let current;
 
 $.ajax({
     method : "GET",
-    url : "http://localhost/api/select/center/"+ bizCd,
+    url : sessionStorage.getItem("serverUrl") + "/api/select/center/"+ bizCd,
     contentType: 'application/json',
     success: function(data) {
         console.log(data);
@@ -214,7 +214,7 @@ function Search(){
 
     $.ajax({
         method: "GET",
-        url: "http://localhost/api/location/list?"+"bizCd="+bizCd+"&centerCd="+center+"",
+        url: sessionStorage.getItem("serverUrl") + "/api/location/list?"+"bizCd="+bizCd+"&centerCd="+center+"",
         contentType: 'application/json',
         success: function(data) {
             if (data != null) {
@@ -256,7 +256,7 @@ function Save(){
 
     $.ajax({
         method : "POST",
-        url : "http://localhost/api/location/save",
+        url : sessionStorage.getItem("serverUrl") + "/api/location/save",
         contentType: 'application/json',
         data: JSON.stringify (data),
         success: function(data) {
@@ -296,7 +296,7 @@ function Delete() {
     if (confirm("삭제하시겠습니까?")) {
         $.ajax({
             method: "POST",
-            url: "http://localhost/api/location/delete",
+            url: sessionStorage.getItem("serverUrl") + "/api/location/delete",
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function (data) {

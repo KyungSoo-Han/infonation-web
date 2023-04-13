@@ -281,6 +281,7 @@
 <script src="dist/js/demo.js"></script>
 
 <script src="/menuData.js?vs=<%=nowDatetime%>"></script>
+<script src="/index.js?vs=<%=nowDatetime%>"></script>
 <script>
     const token = sessionStorage.getItem("token");
     const userName = sessionStorage.getItem("userName");

@@ -304,7 +304,7 @@ function Search(){
     gridView.showLoading();
     $.ajax({
         method : "GET",
-        url : "http://api.infonation.kr/api/outbound?outboundNo="+document.getElementById('outboundNo').value,
+        url : sessionStorage.getItem("serverUrl") + "/api/outbound?outboundNo="+document.getElementById('outboundNo').value,
         contentType: 'application/json',
         headers:{
             "userId": "1"
@@ -365,7 +365,7 @@ function Save(){
     
     $.ajax({
         method : "POST",
-        url : "http://api.infonation.kr/api/outbound",
+        url : sessionStorage.getItem("serverUrl") + "/api/outbound",
         contentType: 'application/json',
         headers: {
             "userId": "1",
@@ -373,6 +373,12 @@ function Save(){
         data: JSON.stringify (mainData),
         success: function(data) {
             console.log(data);
+            if(data.status != 'OK')
+            {
+                alert(data.message);
+                gridView.closeLoading();
+                return;
+            }
             dataProvider.fillJsonData(data.data.itemCreateResponse, {});   // 결과 데이터 그리드에 채워 넣기
             dataProvider.clearRowStates();              // 추가 & 수정 상태 초기화
             gridView.closeLoading();                    // 로딩창 닫기
@@ -403,7 +409,7 @@ function New(){
 function Delete(){
     $.ajax({
         method : "DELETE",
-        url : "http://api.infonation.kr/api/outbound/1/"+document.getElementById('outboundNo').value,
+        url : sessionStorage.getItem("serverUrl") + "/api/outbound/1/"+document.getElementById('outboundNo').value,
         contentType: 'application/json',
         success: function(data) {
             New();
@@ -450,7 +456,7 @@ function DeleteItem(){
 
     $.ajax({
         method : "DELETE",
-        url : "http://api.infonation.kr/api/outbound/deleteitem",
+        url : sessionStorage.getItem("serverUrl") + "/api/outbound/deleteitem",
         contentType: 'application/json',
         data: JSON.stringify (data),
         success: function(data) {

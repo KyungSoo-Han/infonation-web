@@ -304,7 +304,7 @@ function Search(){
     gridView.showLoading();
     $.ajax({
         method : "GET",
-        url : "http://api.infonation.kr/api/inbound?inboundNo="+document.getElementById('inboundNo').value,
+        url : sessionStorage.getItem("serverUrl") + "/api/inbound?inboundNo="+document.getElementById('inboundNo').value,
         contentType: 'application/json',
         headers:{
             "userId": "1"
@@ -365,7 +365,7 @@ function Save(){
     
     $.ajax({
         method : "POST",
-        url : "http://api.infonation.kr/api/inbound",
+        url : sessionStorage.getItem("serverUrl") + "/api/inbound",
         contentType: 'application/json',
         headers: {
             "userId": "1",
@@ -403,7 +403,7 @@ function New(){
 function Delete(){
     $.ajax({
         method : "DELETE",
-        url : "http://api.infonation.kr/api/inbound/1/"+document.getElementById('inboundNo').value,
+        url : sessionStorage.getItem("serverUrl") + "/api/inbound/1/"+document.getElementById('inboundNo').value,
         contentType: 'application/json',
         success: function(data) {
             New();
@@ -450,7 +450,7 @@ function DeleteItem(){
 
     $.ajax({
         method : "DELETE",
-        url : "http://api.infonation.kr/api/inbound/deleteitem",
+        url : sessionStorage.getItem("serverUrl") + "/api/inbound/deleteitem",
         contentType: 'application/json',
         data: JSON.stringify (data),
         success: function(data) {

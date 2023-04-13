@@ -99,7 +99,7 @@
 <script>
     $.ajax({
         method : "GET",
-        url : "http://api.infonation.kr/api/biz",
+        url : sessionStorage.getItem("serverUrl") + "/api/biz",
         contentType: 'application/json',
         success: function(data) {
             console.log(data);
@@ -159,7 +159,7 @@
 
         $.ajax({
             method : "POST",
-            url : "http://api.infonation.kr/api/customer",
+            url : sessionStorage.getItem("serverUrl") + "/api/customer",
             headers: {
                 "userId": "1",
             },
